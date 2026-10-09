@@ -11,10 +11,11 @@
 
 .logo3d {
   z-index: 2; // à frente do título, como um objeto a flutuar sobre a página
-  left: 50%;
-  bottom: 4vh;
-  width: min(25vw, 420px);
-  height: min(25vw, 420px);
+  left: 46%;
+  bottom: 8vh;
+  // a Mattone é larga: caixa horizontal (1.6:1)
+  width: min(36vw, 640px);
+  height: min(22.5vw, 400px);
 }
 
 .titleWrap {
@@ -30,7 +31,7 @@
 .title {
   margin: 0;
   text-align: center;
-  font-size: clamp(44px, 9.6vw, 190px);
+  font-size: clamp(32px, 7.4vw, 150px); // a Mattone é larga: 3 linhas sem partir
   color: var(--ink);
 }
 
@@ -51,8 +52,8 @@
 }
 
 @media (max-width: 700px) {
-  .title { font-size: 12.2vw; }
-  .logo3d { width: 58vw; height: 58vw; left: 32vw; bottom: 10vh; }
+  .title { font-size: 10.6vw; }
+  .logo3d { width: 80vw; height: 50vw; left: 16vw; bottom: 12vh; }
   .titleWrap { padding-top: 14vh; }
   .bottom { font-size: 13px; }
 }

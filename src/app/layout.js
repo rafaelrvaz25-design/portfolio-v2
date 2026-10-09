@@ -1,5 +1,4 @@
 import '@fontsource-variable/inter'
-import '@fontsource-variable/archivo/wdth.css'
 import './globals.css'
 import Header from '../components/Header';
 import SmoothScroll from '../components/SmoothScroll';

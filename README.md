@@ -28,3 +28,7 @@ Para atualizar o site:
 
 O remake é HTML estático gerado por `node remake-webflow/build.mjs` a partir dos mesmos `content/*.md`.
 Para a alpha: `git worktree add <pasta> cec8fdf`, copiar `content/*.md` atuais e `BASE_PATH=/portfolio-v2/alpha npm run build`.
+
+## Fontes
+- Títulos e logo 3D: **Mattone** (Collletttivo, Nunzio Mazzaferro), SIL Open Font License 1.1. Ficheiros em `src/fonts/mattone/` (com a licença) e `fonts-src/` (OTF para gerar o logo 3D com `node scripts/make-logo-3d.mjs 0.06 0.02`).
+- Corpo: Inter. Logo do header: Outfit 900 (`scripts/make-logo.mjs`).

@@ -1,3 +1,8 @@
+/* Mattone, de Collletttivo (Nunzio Mazzaferro), SIL Open Font License 1.1. Licença em src/fonts/mattone/LICENSE.txt */
+@font-face { font-family: 'Mattone'; src: url('../fonts/mattone/Mattone-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Mattone'; src: url('../fonts/mattone/Mattone-Bold.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Mattone'; src: url('../fonts/mattone/Mattone-Black.woff2') format('woff2'); font-weight: 900; font-display: swap; }
+
 :root {
   /* Cor */
   /* neutros, sem tom */
@@ -12,9 +17,9 @@
   --accent: #3366ff;
 
   /* Tipografia */
-  --font-display: 'Archivo Variable', 'Archivo', 'Arial Black', sans-serif;
+  --font-display: 'Mattone', 'Arial Black', sans-serif;
   --font-body: 'Inter Variable', 'Inter', system-ui, sans-serif;
-  --display-stretch: 108%;
+  --display-stretch: normal; /* a Mattone já é larga */
   --display-weight: 700;
 
   /* Espaço */

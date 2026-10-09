@@ -87,7 +87,7 @@
 
 .title {
   margin: 0;
-  font-size: clamp(36px, 5vw, 96px);
+  font-size: clamp(30px, 4.2vw, 80px);
 }
 
 .meta {
@@ -156,13 +156,13 @@
 
 .railDot {
   width: 8px;
-  height: 20px;
-  border-radius: 999px;
+  height: 8px;
+  border-radius: 50%;
   background: rgba(255, 255, 255, 0.35);
-  transition: background 0.3s, height 0.4s var(--ease);
+  transition: background 0.3s, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.railActive .railDot { background: var(--paper); height: 28px; }
+.railActive .railDot { background: var(--paper); transform: scale(1.4); }
 .railActive .railLabel { color: var(--paper); }
 
 .railOpen {

@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { logo } from '../../data/logo';
-import RvMark from '../../common/RvMark';
+import { logo3d as logo } from '../../data/logo3d';
 import styles from './style.module.scss';
 
 // O "Rv." em 3D, a flutuar dentro da secção onde está.
@@ -130,7 +129,9 @@ export default function Logo3D({ className }) {
 
   return (
     <div ref={wrap} className={`${styles.wrap} ${className || ''}`} aria-hidden="true">
-      {fallback ? <RvMark className={styles.flat} title="" /> : <canvas ref={canvas} className={styles.canvas} />}
+      {fallback ? (
+        <svg className={styles.flat} viewBox={logo.viewBox.join(' ')} fill="currentColor"><path d={logo.parts.join(' ')} /></svg>
+      ) : <canvas ref={canvas} className={styles.canvas} />}
     </div>
   );
 }
