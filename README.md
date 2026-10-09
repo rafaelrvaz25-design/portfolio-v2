@@ -20,3 +20,11 @@ Para atualizar o site:
 1. `BASE_PATH=/portfolio-v2 npm run build`
 2. `touch out/.nojekyll` (sem isto o GitHub ignora a pasta `_next`)
 3. Publicar o conteúdo de `out/` na branch `gh-pages`.
+
+## As três versões publicadas
+- `/` · versão atual (tipografia Archivo, scroller de projetos)
+- `/alpha/` · primeira versão, com o visual do template (commit `cec8fdf`)
+- `/webflow/` · remake do site Webflow "Rafa Stuff" (2022), em `remake-webflow/`
+
+O remake é HTML estático gerado por `node remake-webflow/build.mjs` a partir dos mesmos `content/*.md`.
+Para a alpha: `git worktree add <pasta> cec8fdf`, copiar `content/*.md` atuais e `BASE_PATH=/portfolio-v2/alpha npm run build`.
