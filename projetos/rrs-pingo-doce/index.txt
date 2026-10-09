@@ -1,11 +1,11 @@
 1:HL["/portfolio-v2/_next/static/css/f407e2765fc38350.css",{"as":"style"}]
-0:["JXVqkBMKhVj3CMbw_jmzc",[[["",{"children":["projetos",{"children":[["slug","rrs-pingo-doce","d"],{"children":["__PAGE__?{\"slug\":\"rrs-pingo-doce\"}",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/portfolio-v2/_next/static/css/f407e2765fc38350.css","precedence":"next"}]],"$L3"]]]]
+0:["HScOhB_2qxFaL_czEY3Qf",[[["",{"children":["projetos",{"children":[["slug","rrs-pingo-doce","d"],{"children":["__PAGE__?{\"slug\":\"rrs-pingo-doce\"}",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/portfolio-v2/_next/static/css/f407e2765fc38350.css","precedence":"next"}]],"$L3"]]]]
 4:HL["/portfolio-v2/_next/static/css/24cd32e55f78439c.css",{"as":"style"}]
-5:I{"id":2245,"chunks":["846:static/chunks/846-1fada1e9c5eb990a.js","185:static/chunks/app/layout-d838e8c67f08acf9.js"],"name":"","async":false}
-6:I{"id":1639,"chunks":["846:static/chunks/846-1fada1e9c5eb990a.js","185:static/chunks/app/layout-d838e8c67f08acf9.js"],"name":"","async":false}
-7:I{"id":3466,"chunks":["272:static/chunks/webpack-e238f932bb4fb86b.js","253:static/chunks/bce60fc1-ea513d50cf571e14.js","961:static/chunks/961-5a9debabf7dad5a7.js"],"name":"default","async":false}
+5:I{"id":2245,"chunks":["846:static/chunks/846-1fada1e9c5eb990a.js","185:static/chunks/app/layout-dfd9fbb8eaf18d73.js"],"name":"","async":false}
+6:I{"id":1639,"chunks":["846:static/chunks/846-1fada1e9c5eb990a.js","185:static/chunks/app/layout-dfd9fbb8eaf18d73.js"],"name":"","async":false}
+7:I{"id":3466,"chunks":["272:static/chunks/webpack-ce572e10075f460f.js","253:static/chunks/bce60fc1-ea513d50cf571e14.js","961:static/chunks/961-5a9debabf7dad5a7.js"],"name":"default","async":false}
 8:I{"id":3714,"chunks":["994:static/chunks/994-f7c4d2d762e05aa7.js","489:static/chunks/app/template-5820c2683f6dd0ff.js"],"name":"","async":false}
-9:I{"id":372,"chunks":["272:static/chunks/webpack-e238f932bb4fb86b.js","253:static/chunks/bce60fc1-ea513d50cf571e14.js","961:static/chunks/961-5a9debabf7dad5a7.js"],"name":"default","async":false}
+9:I{"id":372,"chunks":["272:static/chunks/webpack-ce572e10075f460f.js","253:static/chunks/bce60fc1-ea513d50cf571e14.js","961:static/chunks/961-5a9debabf7dad5a7.js"],"name":"default","async":false}
 a:I{"id":3688,"chunks":["994:static/chunks/994-f7c4d2d762e05aa7.js","846:static/chunks/846-1fada1e9c5eb990a.js","647:static/chunks/app/projetos/[slug]/page-48577657d58de02c.js"],"name":"","async":false}
 b:T423,<p><strong>Contexto.</strong> A Fujitsu contrata à Monday um pacote de horas para responder a pedidos sobre as máquinas do Pingo Doce: alterações de fluxo, novos requisitos legais, novos métodos de pagamento. Cada pedido chega com o seu próprio briefing, limitações técnicas e exigências do cliente.</p>
 <p><strong>A dor.</strong> Quando havia um problema numa transação, o operador passava o cartão de supervisor e entrava em Modo Direto, que abre o POS. A janela do POS ocupa só uma pequena parte do ecrã, e o briefing da Fujitsu trazia a queixa dos operadores: corrigir ou remover um artigo ali era difícil.</p>
