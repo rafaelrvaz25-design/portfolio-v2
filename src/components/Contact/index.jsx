@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { RevealLines, FadeUp } from '../../common/Reveal';
 import { person } from '../../data/projects';
 import styles from './style.module.scss';
+import Button from '../../common/Button';
 
 function useLisbonTime() {
   const [time, setTime] = useState('');
@@ -22,11 +23,12 @@ export default function Contact() {
       <span className="label">Contacto</span>
       <RevealLines className={`display ${styles.title}`} lines={['Vamos', 'falar.']} />
 
-      <FadeUp>
+      <FadeUp className={styles.row}>
         <a className={styles.email} href={`mailto:${person.email}`}>
           {person.email}
           <span aria-hidden="true">↗</span>
         </a>
+        <Button href={`mailto:${person.email}`} round>Enviar email</Button>
       </FadeUp>
 
       <div className={styles.footer}>

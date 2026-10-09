@@ -9,7 +9,17 @@
   overflow: hidden;
 }
 
+.logo3d {
+  z-index: 2; // à frente do título, como um objeto a flutuar sobre a página
+  right: 4vw;
+  top: 2vh;
+  width: min(26vw, 420px);
+  height: min(26vw, 420px);
+}
+
 .titleWrap {
+  position: relative;
+  z-index: 1;
   flex: 1;
   display: flex;
   align-items: center;
@@ -41,5 +51,6 @@
 
 @media (max-width: 700px) {
   .title { font-size: 12.2vw; }
+  .logo3d { width: 52vw; height: 52vw; right: 2vw; top: 14vh; }
   .bottom { font-size: 13px; }
 }

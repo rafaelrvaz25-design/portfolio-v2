@@ -78,6 +78,93 @@ function Stage() {
     scrollToY(top + i * window.innerHeight);
   };
 
+  // Paragens: quando o scroll pára dentro do palco, encaixa num projeto.
+  // - gesto curto: volta ao projeto onde estava
+  // - gesto médio: avança/recua só um projeto
+  // - gesto rápido: pára no primeiro projeto por que passou (nunca salta um projeto)
+  // Antes do primeiro e depois do último, o scroll fica livre para entrar e sair da secção.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    let idle = true;
+    let y0 = 0;
+    let timer;
+    let snapping = false;
+    const eps = 4;
+
+    const stops = () => {
+      const top = section.current.getBoundingClientRect().top + window.scrollY;
+      return projects.map((_, i) => top + i * window.innerHeight);
+    };
+
+    const settle = () => {
+      idle = true;
+      if (!section.current || section.current.offsetParent === null) return; // escondido (telemóvel)
+      const y = window.scrollY;
+      const S = stops();
+      const first = S[0];
+      const last = S[S.length - 1];
+      const dir = Math.sign(y - y0);
+      let target = null;
+
+      // passou por cima de uma paragem? pára nela
+      if (dir > 0) {
+        const crossed = S.filter((s) => s > y0 + eps && s < y - eps);
+        if (crossed.length) target = crossed[0];
+      } else if (dir < 0) {
+        const crossed = S.filter((s) => s < y0 - eps && s > y + eps);
+        if (crossed.length) target = crossed[crossed.length - 1];
+      }
+
+      // ficou entre dois projetos: decide pelo tamanho do gesto
+      if (target === null && y > first + eps && y < last - eps) {
+        const from = S.reduce((a, b) => (Math.abs(b - y0) < Math.abs(a - y0) ? b : a));
+        const idx = S.indexOf(from);
+        const moved = Math.abs(y - y0) > window.innerHeight * 0.12;
+        const next = Math.min(S.length - 1, Math.max(0, idx + (moved ? dir : 0)));
+        target = S[next];
+      }
+
+      if (target !== null && Math.abs(target - y) > eps) snapTo(target, 0.9);
+    };
+
+    const snapTo = (target, duration) => {
+      snapping = true;
+      clearTimeout(timer);
+      const done = () => { snapping = false; idle = true; };
+      scrollToY(target, { duration, lock: true, onComplete: done });
+      setTimeout(done, duration * 1000 + 400); // segurança, caso o onComplete não chegue
+    };
+
+    // o scroll suave acaba devagar (meio píxel de cada vez): esses restos não contam como movimento
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = Math.abs(y - lastY);
+      lastY = y;
+      if (snapping) return;
+      if (idle) { y0 = y; idle = false; }
+
+      // travão: se o gesto passa por cima de um projeto, pára nele logo ali
+      if (section.current && section.current.offsetParent !== null) {
+        const S = stops();
+        const crossed = y > y0
+          ? S.filter((s) => s > y0 + eps && s < y - eps)
+          : S.filter((s) => s < y0 - eps && s > y + eps);
+        if (crossed.length) {
+          snapTo(y > y0 ? crossed[0] : crossed[crossed.length - 1], 0.6);
+          return;
+        }
+      }
+
+      if (delta < 2) return;
+      clearTimeout(timer);
+      timer = setTimeout(settle, 140);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => { window.removeEventListener('scroll', onScroll); clearTimeout(timer); };
+  }, []);
+
   const project = projects[active];
 
   return (

@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { RevealLines } from '../../common/Reveal';
 import styles from './style.module.scss';
+import Logo3D from '../Logo3D';
 
 export default function Hero() {
   const ref = useRef(null);
@@ -13,6 +14,7 @@ export default function Hero() {
 
   return (
     <section ref={ref} className={styles.hero}>
+      <Logo3D className={styles.logo3d} />
       <motion.div style={{ y, opacity }} className={styles.titleWrap}>
         <RevealLines
           as="h1"

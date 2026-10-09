@@ -1,76 +1,83 @@
 'use client';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import styles from './style.module.scss';
 import Placeholder from '../../common/Placeholder';
-import { RevealLines, FadeUp } from '../../common/Reveal';
+import Button from '../../common/Button';
+
+const reveal = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
+};
+
+const slideUp = {
+  initial: { y: '100%' },
+  enter: (i) => ({ y: 0, transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1], delay: 0.02 * i } }),
+};
 
 function Figure({ caption, color }) {
   return (
-    <FadeUp as="figure" className={styles.figure}>
+    <motion.figure className={styles.figure} {...reveal}>
       <div className={styles.frame} style={{ backgroundColor: color }}>
         <Placeholder label="Imagem por enviar" color="transparent" />
       </div>
       <figcaption>{caption}</figcaption>
-    </FadeUp>
+    </motion.figure>
   );
 }
 
-// Parte o título do projeto em linhas curtas para o título gigante.
-function titleLines(title) {
-  const words = title.split(' ');
-  if (words.length <= 2) return [title];
-  const mid = Math.ceil(words.length / 2);
-  return [words.slice(0, mid).join(' '), words.slice(mid).join(' ')];
-}
-
 export default function CaseStudy({ project, study, number, next }) {
+
+  const words = study.headline.split(' ');
+
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
-        <div className={styles.heroTop}>
+        <div className={styles.heroInner}>
           <Link href="/#projetos" className={styles.back}>← Todos os projetos</Link>
-          <span className="label">{number} · {project.tag}</span>
-        </div>
-
-        <RevealLines as="h1" onLoad delay={0.2} className={`display ${styles.title}`} lines={titleLines(project.title)} />
-
-        <FadeUp delay={0.5} className={styles.heroBottom}>
-          <p className={styles.headline}>{study.headline}</p>
+          <p className={styles.kicker}>{number} · {project.tag}</p>
+          <h1>
+            {words.map((word, i) => (
+              <span key={i} className={styles.mask}>
+                <motion.span variants={slideUp} custom={i} initial="initial" animate="enter">{word}</motion.span>
+              </span>
+            ))}
+          </h1>
           <dl className={styles.facts}>
             {study.facts.map((f) => (
               <div key={f.label}>
                 <dt>{f.label}</dt>
-                <dd>{f.value}</dd>
+                <dd className={f.pending ? styles.pending : undefined}>{f.value}</dd>
               </div>
             ))}
           </dl>
-        </FadeUp>
+        </div>
       </section>
 
-      <FadeUp className={styles.cover}>
+      <div className={styles.cover}>
         <div className={styles.coverFrame} style={{ backgroundColor: project.color }}>
           <Placeholder label={`Capa · ${project.title}`} color="transparent" />
         </div>
-      </FadeUp>
+      </div>
 
       {study.impact && (
-        <section className={styles.impact}>
-          <span className="label">Impacto</span>
-          <FadeUp as="p" className={styles.impactText}>{study.impact}</FadeUp>
-        </section>
+        <motion.section className={styles.impact} {...reveal}>
+          <p className={styles.sectionLabel}>Impacto</p>
+          <p className={styles.impactText}>{study.impact}</p>
+        </motion.section>
       )}
 
       {study.sections.map((section, i) => (
         <section key={section.title} className={styles.section}>
-          <div className={styles.sectionGrid}>
+          <motion.div className={styles.sectionGrid} {...reveal}>
             <div className={styles.sectionHead}>
-              <span className="label">{String(i + 1).padStart(2, '0')}</span>
-              <RevealLines className={`display ${styles.sectionTitle}`} lines={[section.title]} />
+              <span>{String(i + 1).padStart(2, '0')}</span>
+              <h2>{section.title}</h2>
             </div>
-            <FadeUp className={styles.prose}>
-              <div dangerouslySetInnerHTML={{ __html: section.html }} />
-            </FadeUp>
-          </div>
+            <div className={styles.prose} dangerouslySetInnerHTML={{ __html: section.html }} />
+          </motion.div>
           {(project.images[section.title] || []).map((caption) => (
             <Figure key={caption} caption={caption} color={project.color} />
           ))}
@@ -78,14 +85,14 @@ export default function CaseStudy({ project, study, number, next }) {
       ))}
 
       <section className={styles.next}>
-        <span className="label">Próximo projeto</span>
+        <p className={styles.sectionLabel}>Próximo projeto</p>
         <Link href={`/projetos/${next.slug}`} className={styles.nextLink}>
-          <span className={`display ${styles.nextTitle}`}>{next.title}</span>
-          <span className={styles.nextMeta}>{next.tag} <span aria-hidden="true">→</span></span>
+          <h2>{next.title}</h2>
+          <span>{next.tag}</span>
         </Link>
         <div className={styles.nextFoot}>
-          <Link href="/" className={styles.homeLink}>Voltar ao início</Link>
-          <span>© 2026 Rafael Vaz</span>
+          <Button href="/" tone="dark">Voltar ao início</Button>
+          <p>© 2026 Rafael Vaz</p>
         </div>
       </section>
     </main>

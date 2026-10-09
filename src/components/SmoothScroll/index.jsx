@@ -40,7 +40,8 @@ export function scrollToElement(el, immediate = false) {
   else el.scrollIntoView({ behavior: immediate ? 'auto' : 'smooth' });
 }
 
-export function scrollToY(y) {
-  if (window.__scroll) window.__scroll.scrollTo(y, { duration: 1.2 });
-  else window.scrollTo({ top: y, behavior: 'smooth' });
+export function scrollToY(y, options = {}) {
+  const { duration = 1.2, lock = false, onComplete } = options;
+  if (window.__scroll) window.__scroll.scrollTo(y, { duration, lock, onComplete });
+  else { window.scrollTo({ top: y, behavior: 'smooth' }); onComplete && setTimeout(onComplete, duration * 1000); }
 }
