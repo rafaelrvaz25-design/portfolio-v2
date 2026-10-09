@@ -10,7 +10,7 @@ export const projects = [
     tag: "Design System",
     client: "Federação Portuguesa de Futebol",
     year: "2023 a 2024",
-    color: "#e6ebe7",
+    color: "#e4e4e4",
     images: {
       "Problema": ["Inventário: o mesmo componente com estilos diferentes nos 4 produtos"],
       "Processo": ["Os 4 produtos em scope: Resultados, Bilheteira, institucional e Portugal Store"],
@@ -28,7 +28,7 @@ export const projects = [
     tag: "Self-checkout",
     client: "Fujitsu, para o Pingo Doce",
     year: null, // por confirmar com o Rafa
-    color: "#ebe7e1",
+    color: "#dddddd",
     images: {
       "Visão geral": ["O RRS na loja, o quiosque da Comida Fresca"],
       "Problema": ["Modo Direto: a janela pequena do POS dentro do ecrã"],

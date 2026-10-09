@@ -24,18 +24,11 @@ export default function Contact() {
       <RevealLines className={`display ${styles.title}`} lines={['Vamos', 'falar.']} />
 
       <FadeUp className={styles.row}>
-        <a className={styles.email} href={`mailto:${person.email}`}>
-          {person.email}
-          <span aria-hidden="true">↗</span>
-        </a>
-        <Button href={`mailto:${person.email}`} round>Enviar email</Button>
+        <Button href={`mailto:${person.email}`} tone="dark">{person.email}</Button>
+        <Button href={person.linkedin} tone="dark" external>LinkedIn</Button>
       </FadeUp>
 
       <div className={styles.footer}>
-        <div>
-          <span className="label">Redes</span>
-          <a href={person.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-        </div>
         <div>
           <span className="label">Hora em Lisboa</span>
           <span>{time}</span>

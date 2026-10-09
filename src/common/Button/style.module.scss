@@ -4,9 +4,9 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  padding: 16px 34px;
-  border-radius: 999px;
-  border: 1px solid currentColor;
+  padding: 18px 56px;
+  border-radius: 3em;
+  border: 1px solid #888;
   font-size: 15px;
   text-decoration: none;
   isolation: isolate;
@@ -32,26 +32,14 @@
 
 .light {
   color: var(--ink);
-  border-color: var(--line);
   &:hover .label { color: #fff; }
 }
 
 .dark {
-  color: var(--paper);
-  border-color: var(--dark-line);
+  color: #fff;
   &:hover .label { color: #fff; }
 }
 
-.round {
-  width: 160px;
-  height: 160px;
-  padding: 0;
-  border: 0;
-  background: var(--accent);
-  color: #fff;
-  .circle { background: #1f44d6; }
-}
-
 @media (max-width: 700px) {
-  .round { width: 120px; height: 120px; font-size: 14px; }
+  .button { padding: 16px 32px; }
 }

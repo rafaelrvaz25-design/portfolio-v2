@@ -11,10 +11,10 @@
 
 .logo3d {
   z-index: 2; // à frente do título, como um objeto a flutuar sobre a página
-  right: 4vw;
-  top: 2vh;
-  width: min(26vw, 420px);
-  height: min(26vw, 420px);
+  left: 50%;
+  bottom: 4vh;
+  width: min(25vw, 420px);
+  height: min(25vw, 420px);
 }
 
 .titleWrap {
@@ -22,8 +22,9 @@
   z-index: 1;
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start; // o título sobe para deixar espaço ao Rv. por baixo
   justify-content: center;
+  padding-top: 7vh;
 }
 
 .title {
@@ -51,6 +52,7 @@
 
 @media (max-width: 700px) {
   .title { font-size: 12.2vw; }
-  .logo3d { width: 52vw; height: 52vw; right: 2vw; top: 14vh; }
+  .logo3d { width: 58vw; height: 58vw; left: 32vw; bottom: 10vh; }
+  .titleWrap { padding-top: 14vh; }
   .bottom { font-size: 13px; }
 }

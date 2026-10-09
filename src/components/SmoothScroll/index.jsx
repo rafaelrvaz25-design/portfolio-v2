@@ -34,10 +34,22 @@ export default function SmoothScroll() {
   return null;
 }
 
+// Enquanto um link interno leva a página até uma secção, as paragens dos projetos não travam o percurso.
 export function scrollToElement(el, immediate = false) {
   if (!el) return;
-  if (window.__scroll) window.__scroll.scrollTo(el, { immediate, duration: 1.2 });
-  else el.scrollIntoView({ behavior: immediate ? 'auto' : 'smooth' });
+  clearTimeout(window.__navTimer);
+  window.__navigating = true;
+  const done = () => {
+    clearTimeout(window.__navTimer);
+    window.__navTimer = setTimeout(() => { window.__navigating = false; }, 200);
+  };
+  if (window.__scroll) {
+    window.__scroll.scrollTo(el, { immediate, duration: 1.2, onComplete: done });
+    window.__navTimer = setTimeout(() => { window.__navigating = false; }, 2000); // segurança
+  } else {
+    el.scrollIntoView({ behavior: immediate ? 'auto' : 'smooth' });
+    window.__navTimer = setTimeout(() => { window.__navigating = false; }, immediate ? 200 : 1400);
+  }
 }
 
 export function scrollToY(y, options = {}) {

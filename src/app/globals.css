@@ -1,13 +1,14 @@
 :root {
   /* Cor */
-  --paper: #f4f4f1;
-  --ink: #121612;
-  --ink-soft: #3d423d;
-  --muted: #74776f;
-  --line: #d9d9d3;
-  --dark: #121612;
-  --dark-line: rgba(244, 244, 241, 0.16);
-  --dark-muted: rgba(244, 244, 241, 0.55);
+  /* neutros, sem tom */
+  --paper: #f4f4f4;
+  --ink: #141414;
+  --ink-soft: #404040;
+  --muted: #737373;
+  --line: #dadada;
+  --dark: #1c1c1c;
+  --dark-line: rgba(255, 255, 255, 0.16);
+  --dark-muted: rgba(255, 255, 255, 0.55);
   --accent: #3366ff;
 
   /* Tipografia */
@@ -17,7 +18,8 @@
   --display-weight: 700;
 
   /* Espaço */
-  --gutter: clamp(20px, 3.4vw, 56px);
+  --gutter: clamp(20px, 3.4vw, 56px);       /* margem do header (junto às bordas) */
+  --page: clamp(20px, 12.8vw, 256px);       /* margem do conteúdo: a grelha mais curta da alpha */
   --ease: cubic-bezier(0.76, 0, 0.24, 1);
   --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
 }
@@ -66,4 +68,8 @@ html.lenis, html.lenis body { height: auto; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+@media (max-width: 700px) {
+  :root { --page: 20px; }
 }

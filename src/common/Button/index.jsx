@@ -6,8 +6,8 @@ import Magnetic from '../Magnetic';
 import styles from './style.module.scss';
 
 // Botão com o carácter da alpha: magnético e, no hover, um círculo que sobe e enche o fundo.
-// `tone`: "light" (para fundos claros) ou "dark" (para fundos escuros). `round`: botão circular.
-export default function Button({ href, children, tone = 'light', round = false, external = false, className = '' }) {
+// `tone`: "light" (para fundos claros) ou "dark" (para fundos escuros).
+export default function Button({ href, children, tone = 'light', external = false, className = '' }) {
   const circle = useRef(null);
   const tl = useRef(null);
   const leaveTimer = useRef(null);
@@ -27,7 +27,7 @@ export default function Button({ href, children, tone = 'light', round = false, 
     leaveTimer.current = setTimeout(() => tl.current.play(), 300);
   };
 
-  const cls = `${styles.button} ${styles[tone]} ${round ? styles.round : ''} ${className}`;
+  const cls = `${styles.button} ${styles[tone]} ${className}`;
   const inner = (
     <>
       <span className={styles.label}>{children}</span>

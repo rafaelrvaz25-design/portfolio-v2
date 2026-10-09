@@ -142,6 +142,7 @@ function Stage() {
       const delta = Math.abs(y - lastY);
       lastY = y;
       if (snapping) return;
+      if (window.__navigating) { clearTimeout(timer); idle = true; return; }
       if (idle) { y0 = y; idle = false; }
 
       // travão: se o gesto passa por cima de um projeto, pára nele logo ali

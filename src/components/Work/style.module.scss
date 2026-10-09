@@ -18,8 +18,8 @@
 .stageHead {
   position: absolute;
   top: 84px;
-  left: var(--gutter);
-  right: var(--gutter);
+  left: var(--page);
+  right: var(--page);
   display: flex;
   justify-content: space-between;
   z-index: 2;
@@ -61,7 +61,7 @@
 /* título do projeto ativo, em baixo à esquerda */
 .info {
   position: absolute;
-  left: var(--gutter);
+  left: var(--page);
   right: 30%;
   bottom: 40px;
   z-index: 2;
@@ -119,7 +119,7 @@
 .rail {
   position: absolute;
   top: 50%;
-  right: var(--gutter);
+  right: var(--page);
   transform: translateY(-50%);
   z-index: 3;
   display: flex;
@@ -158,7 +158,7 @@
   width: 8px;
   height: 20px;
   border-radius: 999px;
-  background: rgba(244, 244, 241, 0.35);
+  background: rgba(255, 255, 255, 0.35);
   transition: background 0.3s, height 0.4s var(--ease);
 }
 
@@ -179,7 +179,7 @@
 .mobile { display: none; }
 
 .list {
-  padding: 110px var(--gutter) 80px;
+  padding: 110px var(--page) 80px;
 }
 
 .listHead {
