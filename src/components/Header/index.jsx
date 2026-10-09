@@ -1,78 +1,44 @@
 'use client';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import styles from './style.module.scss';
-import { usePathname } from 'next/navigation';
-import { AnimatePresence } from 'framer-motion';
-import Nav from './nav';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Rounded from '../../common/RoundedButton';
-import Magnetic from '../../common/Magnetic';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import styles from './style.module.scss';
+import { scrollToElement } from '../SmoothScroll';
 
-export default function index() {
-    const header = useRef(null);
-    const [isActive, setIsActive] = useState(false);
-    const pathname = usePathname();
-    const button = useRef(null);
+const links = [
+  { label: 'Projetos', id: 'projetos' },
+  { label: 'Sobre', id: 'sobre' },
+  { label: 'Contacto', id: 'contacto' },
+];
 
-    useEffect( () => {
-      if(isActive) setIsActive(false)
-    }, [pathname])
+export default function Header() {
+  const pathname = usePathname();
 
-    useLayoutEffect( () => {
-        gsap.registerPlugin(ScrollTrigger)
-        gsap.to(button.current, {
-            scrollTrigger: {
-                trigger: document.documentElement,
-                start: 0,
-                end: window.innerHeight,
-                onLeave: () => {gsap.to(button.current, {scale: 1, duration: 0.25, ease: "power1.out"})},
-                onEnterBack: () => {gsap.to(button.current, {scale: 0, duration: 0.25, ease: "power1.out"},setIsActive(false))}
-            }
-        })
-    }, [])
+  // Na home, os links fazem scroll suave em vez de saltar.
+  const onAnchor = (e, id) => {
+    if (pathname !== '/') return;
+    e.preventDefault();
+    scrollToElement(document.getElementById(id));
+    history.replaceState(null, '', `#${id}`);
+  };
 
-    return (
-        <>
-        <div ref={header} className={styles.header}>
-            <Link href="/" className={styles.logo}>
-                <p className={styles.copyright}>©</p>
-                <div className={styles.name}>
-                    <p className={styles.codeBy}>Design by</p>
-                    <p className={styles.dennis}>Rafael</p>
-                    <p className={styles.snellenberg}>Vaz</p>
-                </div>
-            </Link>
-            <div className={styles.nav}>
-                <Magnetic>
-                    <div className={styles.el}>
-                        <Link href="/#projetos">Projetos</Link>
-                        <div className={styles.indicator}></div>
-                    </div>
-                </Magnetic>
-                <Magnetic>
-                    <div className={styles.el}>
-                        <Link href="/#sobre">Sobre</Link>
-                        <div className={styles.indicator}></div>
-                    </div>
-                </Magnetic>
-                <Magnetic>
-                    <div className={styles.el}>
-                        <Link href="/#contacto">Contacto</Link>
-                        <div className={styles.indicator}></div>
-                    </div>
-                </Magnetic>
-            </div>
-        </div>
-        <div ref={button} className={styles.headerButtonContainer}>
-            <Rounded onClick={() => {setIsActive(!isActive)}} className={`${styles.button}`}>
-                <div className={`${styles.burger} ${isActive ? styles.burgerActive : ""}`}></div>
-            </Rounded>
-        </div>
-        <AnimatePresence mode="wait">
-            {isActive && <Nav close={() => setIsActive(false)} />}
-        </AnimatePresence>
-        </>
-    )
+  const onLogo = (e) => {
+    if (pathname !== '/') return;
+    e.preventDefault();
+    scrollToElement(document.body);
+    history.replaceState(null, '', ' ');
+  };
+
+  return (
+    <header className={styles.header}>
+      <Link href="/" className={styles.name} onClick={onLogo}>Rafael Vaz</Link>
+      <span className={styles.role}>UX/UI Designer, Lisboa</span>
+      <nav className={styles.nav} aria-label="Principal">
+        {links.map((l) => (
+          <Link key={l.id} href={`/#${l.id}`} onClick={(e) => onAnchor(e, l.id)}>
+            {l.label}
+          </Link>
+        ))}
+      </nav>
+    </header>
+  );
 }

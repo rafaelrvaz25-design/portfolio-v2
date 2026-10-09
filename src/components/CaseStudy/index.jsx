@@ -1,94 +1,76 @@
 'use client';
-import { useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import styles from './style.module.scss';
 import Placeholder from '../../common/Placeholder';
-import Rounded from '../../common/RoundedButton';
-
-const reveal = {
-  initial: { opacity: 0, y: 40 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
-};
-
-const slideUp = {
-  initial: { y: '100%' },
-  enter: (i) => ({ y: 0, transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1], delay: 0.02 * i } }),
-};
+import { RevealLines, FadeUp } from '../../common/Reveal';
 
 function Figure({ caption, color }) {
   return (
-    <motion.figure className={styles.figure} {...reveal}>
+    <FadeUp as="figure" className={styles.figure}>
       <div className={styles.frame} style={{ backgroundColor: color }}>
         <Placeholder label="Imagem por enviar" color="transparent" />
       </div>
       <figcaption>{caption}</figcaption>
-    </motion.figure>
+    </FadeUp>
   );
 }
 
+// Parte o título do projeto em linhas curtas para o título gigante.
+function titleLines(title) {
+  const words = title.split(' ');
+  if (words.length <= 2) return [title];
+  const mid = Math.ceil(words.length / 2);
+  return [words.slice(0, mid).join(' '), words.slice(mid).join(' ')];
+}
+
 export default function CaseStudy({ project, study, number, next }) {
-  useEffect(() => {
-    let scroll;
-    (async () => {
-      const LocomotiveScroll = (await import('locomotive-scroll')).default;
-      scroll = new LocomotiveScroll();
-      document.body.style.cursor = 'default';
-      window.scrollTo(0, 0);
-    })();
-    return () => scroll && scroll.destroy();
-  }, []);
-
-  const words = study.headline.split(' ');
-
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
-        <div className={styles.heroInner}>
+        <div className={styles.heroTop}>
           <Link href="/#projetos" className={styles.back}>← Todos os projetos</Link>
-          <p className={styles.kicker}>{number} · {project.tag}</p>
-          <h1>
-            {words.map((word, i) => (
-              <span key={i} className={styles.mask}>
-                <motion.span variants={slideUp} custom={i} initial="initial" animate="enter">{word}</motion.span>
-              </span>
-            ))}
-          </h1>
+          <span className="label">{number} · {project.tag}</span>
+        </div>
+
+        <RevealLines as="h1" onLoad delay={0.2} className={`display ${styles.title}`} lines={titleLines(project.title)} />
+
+        <FadeUp delay={0.5} className={styles.heroBottom}>
+          <p className={styles.headline}>{study.headline}</p>
           <dl className={styles.facts}>
             {study.facts.map((f) => (
               <div key={f.label}>
                 <dt>{f.label}</dt>
-                <dd className={f.pending ? styles.pending : undefined}>{f.value}</dd>
+                <dd>{f.value}</dd>
               </div>
             ))}
           </dl>
-        </div>
+        </FadeUp>
       </section>
 
-      <div className={styles.cover}>
+      <FadeUp className={styles.cover}>
         <div className={styles.coverFrame} style={{ backgroundColor: project.color }}>
           <Placeholder label={`Capa · ${project.title}`} color="transparent" />
         </div>
-      </div>
+      </FadeUp>
 
       {study.impact && (
-        <motion.section className={styles.impact} {...reveal}>
-          <p className={styles.sectionLabel}>Impacto</p>
-          <p className={styles.impactText}>{study.impact}</p>
-        </motion.section>
+        <section className={styles.impact}>
+          <span className="label">Impacto</span>
+          <FadeUp as="p" className={styles.impactText}>{study.impact}</FadeUp>
+        </section>
       )}
 
       {study.sections.map((section, i) => (
         <section key={section.title} className={styles.section}>
-          <motion.div className={styles.sectionGrid} {...reveal}>
+          <div className={styles.sectionGrid}>
             <div className={styles.sectionHead}>
-              <span>{String(i + 1).padStart(2, '0')}</span>
-              <h2>{section.title}</h2>
+              <span className="label">{String(i + 1).padStart(2, '0')}</span>
+              <RevealLines className={`display ${styles.sectionTitle}`} lines={[section.title]} />
             </div>
-            <div className={styles.prose} dangerouslySetInnerHTML={{ __html: section.html }} />
-          </motion.div>
+            <FadeUp className={styles.prose}>
+              <div dangerouslySetInnerHTML={{ __html: section.html }} />
+            </FadeUp>
+          </div>
           {(project.images[section.title] || []).map((caption) => (
             <Figure key={caption} caption={caption} color={project.color} />
           ))}
@@ -96,18 +78,14 @@ export default function CaseStudy({ project, study, number, next }) {
       ))}
 
       <section className={styles.next}>
-        <p className={styles.sectionLabel}>Próximo projeto</p>
+        <span className="label">Próximo projeto</span>
         <Link href={`/projetos/${next.slug}`} className={styles.nextLink}>
-          <h2>{next.title}</h2>
-          <span>{next.tag}</span>
+          <span className={`display ${styles.nextTitle}`}>{next.title}</span>
+          <span className={styles.nextMeta}>{next.tag} <span aria-hidden="true">→</span></span>
         </Link>
         <div className={styles.nextFoot}>
-          <Link href="/">
-            <Rounded backgroundColor="#334BD3">
-              <p>Voltar ao início</p>
-            </Rounded>
-          </Link>
-          <p>© 2026 Rafael Vaz</p>
+          <Link href="/" className={styles.homeLink}>Voltar ao início</Link>
+          <span>© 2026 Rafael Vaz</span>
         </div>
       </section>
     </main>

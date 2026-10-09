@@ -1,44 +1,14 @@
-'use client';
-import styles from './page.module.scss'
-import { useEffect, useState } from 'react'
-import { AnimatePresence } from 'framer-motion';
-import Preloader from '../components/Preloader';
-import Landing from '../components/Landing';
-import Projects from '../components/Projects';
-import Description from '../components/Description';
-import SlidingImages from '../components/SlidingImages';
+import Hero from '../components/Hero';
+import Work from '../components/Work';
+import About from '../components/About';
 import Contact from '../components/Contact';
 
 export default function Home() {
-
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect( () => {
-    let locomotiveScroll;
-    (
-      async () => {
-          const LocomotiveScroll = (await import('locomotive-scroll')).default
-          locomotiveScroll = new LocomotiveScroll();
-
-          setTimeout( () => {
-            setIsLoading(false);
-            document.body.style.cursor = 'default'
-            window.scrollTo(0,0);
-          }, 2000)
-      }
-    )()
-    return () => locomotiveScroll && locomotiveScroll.destroy();
-  }, [])
-
   return (
-    <main className={styles.main}>
-      <AnimatePresence mode='wait'>
-        {isLoading && <Preloader />}
-      </AnimatePresence>
-      <Landing />
-      <Description />
-      <Projects />
-      <SlidingImages />
+    <main>
+      <Hero />
+      <Work />
+      <About />
       <Contact />
     </main>
   )

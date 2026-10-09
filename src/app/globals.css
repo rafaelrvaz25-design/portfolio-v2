@@ -1,6 +1,69 @@
+:root {
+  /* Cor */
+  --paper: #f4f4f1;
+  --ink: #121612;
+  --ink-soft: #3d423d;
+  --muted: #74776f;
+  --line: #d9d9d3;
+  --dark: #121612;
+  --dark-line: rgba(244, 244, 241, 0.16);
+  --dark-muted: rgba(244, 244, 241, 0.55);
+  --accent: #3366ff;
 
-body{
-    margin: 0px;
-    overflow: hidden; /* Hide scrollbars */
-    cursor: wait;
+  /* Tipografia */
+  --font-display: 'Archivo Variable', 'Archivo', 'Arial Black', sans-serif;
+  --font-body: 'Inter Variable', 'Inter', system-ui, sans-serif;
+  --display-stretch: 108%;
+  --display-weight: 700;
+
+  /* Espaço */
+  --gutter: clamp(20px, 3.4vw, 56px);
+  --ease: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-out: cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px #fff;
+}
+
+::selection { background: var(--accent); color: #fff; }
+
+.display {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-stretch: var(--display-stretch);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+}
+
+.label {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Lenis (Locomotive Scroll v5) */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }

@@ -1,6 +1,8 @@
-import './globals.css'
 import '@fontsource-variable/inter'
+import '@fontsource-variable/archivo/wdth.css'
+import './globals.css'
 import Header from '../components/Header';
+import SmoothScroll from '../components/SmoothScroll';
 
 export const metadata = {
   title: 'Rafael Vaz · UX/UI Designer',
@@ -10,7 +12,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt">
-      <body style={{ fontFamily: "'Inter Variable', Inter, sans-serif" }}>
+      <body>
+        <SmoothScroll />
         <Header />
         {children}
       </body>

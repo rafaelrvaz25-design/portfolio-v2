@@ -1,0 +1,45 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 110px var(--gutter) 28px;
+  overflow: hidden;
+}
+
+.titleWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(44px, 9.6vw, 190px);
+  color: var(--ink);
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+
+  p { margin: 0; }
+}
+
+.scroll {
+  color: var(--muted);
+}
+
+@media (max-width: 700px) {
+  .title { font-size: 12.2vw; }
+  .bottom { font-size: 13px; }
+}
