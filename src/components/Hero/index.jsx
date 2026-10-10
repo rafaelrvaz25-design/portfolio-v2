@@ -5,7 +5,8 @@ import { RevealLines } from '../../common/Reveal';
 import styles from './style.module.scss';
 import Logo3D from '../Logo3D';
 
-export default function Hero() {
+// `renderLogo` (opcional) substitui o Rv. 3D; recebe a classe de posição do hero.
+export default function Hero({ renderLogo }) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   // Ao sair do ecrã, o título sobe um pouco mais devagar e desvanece.
@@ -14,7 +15,7 @@ export default function Hero() {
 
   return (
     <section ref={ref} className={styles.hero}>
-      <Logo3D className={styles.logo3d} />
+      {renderLogo ? renderLogo(styles.logo3d) : <Logo3D className={styles.logo3d} />}
       <motion.div style={{ y, opacity }} className={styles.titleWrap}>
         <RevealLines
           as="h1"

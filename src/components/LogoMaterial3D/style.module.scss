@@ -1,0 +1,21 @@
+.wrap {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+// o vidro desenha sobre a cor da página: "darken" deixa ver o título por baixo e esconde o retângulo do canvas
+.glass .canvas { mix-blend-mode: darken; }
+
+.still {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
