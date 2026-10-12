@@ -3,10 +3,9 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { RevealLines } from '../../common/Reveal';
 import styles from './style.module.scss';
-import Logo3D from '../Logo3D';
+import LogoMaterial3D from '../LogoMaterial3D';
 
-// `renderLogo` (opcional) substitui o Rv. 3D; recebe a classe de posição do hero.
-export default function Hero({ renderLogo }) {
+export default function Hero() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   // Ao sair do ecrã, o título sobe um pouco mais devagar e desvanece.
@@ -15,7 +14,8 @@ export default function Hero({ renderLogo }) {
 
   return (
     <section ref={ref} className={styles.hero}>
-      {renderLogo ? renderLogo(styles.logo3d) : <Logo3D className={styles.logo3d} />}
+      {/* o novo Rv. em prata; em computadores lentos passa a imagem estática */}
+      <LogoMaterial3D variant="prata" className={styles.logo3d} />
       <motion.div style={{ y, opacity }} className={styles.titleWrap}>
         <RevealLines
           as="h1"

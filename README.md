@@ -30,5 +30,12 @@ O remake é HTML estático gerado por `node remake-webflow/build.mjs` a partir d
 Para a alpha: `git worktree add <pasta> cec8fdf`, copiar `content/*.md` atuais e `BASE_PATH=/portfolio-v2/alpha npm run build`.
 
 ## Fontes
-- Títulos e logo 3D: **Mattone** (Collletttivo, Nunzio Mazzaferro), SIL Open Font License 1.1. Ficheiros em `src/fonts/mattone/` (com a licença) e `fonts-src/` (OTF para gerar o logo 3D com `node scripts/make-logo-3d.mjs 0.06 0.02`).
-- Corpo: Inter. Logo do header: Outfit 900 (`scripts/make-logo.mjs`).
+- Títulos: **Mattone** (Collletttivo, Nunzio Mazzaferro), SIL Open Font License 1.1. Ficheiros em `src/fonts/mattone/` (com a licença).
+- Corpo: Inter.
+
+## Logo
+- O novo Rv. foi vetorizado a partir da imagem do Rafa (potrace) para `src/data/logoNew.js`: `sharp` (desenho fiel, usado no header via `common/RvMark`) e `round` (cantos arredondados, usado no 3D).
+- O Rv. 3D do hero é `components/LogoMaterial3D` com `variant="prata"` (há também `cromado` e `vidro`, testados e não usados).
+  Leve (cerca de 21 mil triângulos), resolução limitada a 1.5x, só desenha quando está no ecrã.
+  Nos primeiros 2 s mede a fluidez: abaixo de 35 fps, ou com "reduzir movimento", poupança de dados ou sem WebGL, mostra `public/logo-static/prata.webp`.
+  `?noprobe` desliga a medição; `?capture` fixa a pose (foi assim que se geraram as imagens estáticas).

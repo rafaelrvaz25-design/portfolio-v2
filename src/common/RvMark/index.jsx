@@ -1,10 +1,10 @@
-import { logo } from '../../data/logo';
+import { logoNew } from '../../data/logoNew';
 
-// O logo "Rv." em vetor (redesenhado a partir do logo do site Webflow antigo).
+// O logo "Rv." em vetor (o novo desenho do Rafa, vetorizado a partir da imagem dele).
 export default function RvMark({ className, style, title = 'Rafael Vaz' }) {
   return (
-    <svg className={className} style={style} viewBox={logo.viewBox.join(' ')} role="img" aria-label={title}>
-      <path d={logo.parts.join(' ')} fill="currentColor" />
+    <svg className={className} style={style} viewBox="90 71 725 300" role="img" aria-label={title}>
+      <path d={logoNew.sharp.join(' ')} fill="currentColor" fillRule="evenodd" />
     </svg>
   );
 }
