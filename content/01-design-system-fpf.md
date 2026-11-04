@@ -22,7 +22,7 @@ O desafio era criar um Design System capaz de unificar estas experiências, redu
 
 Enquanto UX/UI Designer, participei na investigação inicial e fui responsável pelo **desenho dos componentes, organização dos Design Tokens e documentação da biblioteca em Figma**. Participei também nas apresentações ao cliente e, após a entrega, continuei a trabalhar na evolução do sistema durante mais um ano.
 
-![Os quatro produtos prioritários antes do Design System: Resultados, Bilheteira, site institucional e Portugal Store.](images/fpf/01-contexto.webp?v=2)
+![Os quatro produtos prioritários antes do Design System: Resultados, Bilheteira, site institucional e Portugal Store.](images/fpf/01-contexto.webp?v=3)
 
 ## Compreender antes de construir
 
@@ -30,7 +30,7 @@ Antes de desenhar, precisávamos de confirmar a necessidade do sistema. A equipa
 
 A análise identificou **27 componentes e 1.313 variações**, revelando inconsistências entre elementos com a mesma função.
 
-![Excerto do inventário: botões e cards de resultados com a mesma função e tratamentos diferentes.](images/fpf/02-inventario.webp?v=2)
+![Excerto do inventário: botões e cards de resultados com a mesma função e tratamentos diferentes.](images/fpf/02-inventario.webp?v=3)
 
 Em vez de tentar abranger todo o ecossistema, definimos quatro plataformas prioritárias: Resultados, Bilheteira, site institucional e Portugal Store.
 
@@ -42,19 +42,19 @@ Com a investigação concluída, fui responsável por transformar os elementos i
 
 Comecei por estruturar os **Design Tokens**, centralizando cores, tipografia, espaçamentos e raios. Esta organização permitiu estabelecer referências partilhadas e simplificar futuras alterações.
 
-![As variáveis em duas coleções, Primitives e Tokens, com quatro modos. O mesmo token, Colour/Action/high, alimenta o botão e o toggle em modo claro e escuro.](images/fpf/03-tokens.webp?v=2)
+![As variáveis em duas coleções, Primitives e Tokens, com quatro modos. O mesmo token, Colour/Action/high, alimenta o botão e o toggle em modo claro e escuro.](images/fpf/03-tokens.webp?v=3)
 
 Os componentes foram organizados com variantes, propriedades e estados de interação. No caso dos botões, por exemplo, definimos cinco níveis de destaque: Primário, Secundário, Outlined, Ghost e Destrutivo.
 
-![O botão: cinco níveis de destaque nos estados Rest, Hover, Pressed e Focus, com as propriedades do componente e as medidas de construção.](images/fpf/04-botao.webp?v=2)
+![O botão: cinco níveis de destaque nos estados Rest, Hover, Pressed e Focus, com as propriedades do componente e as medidas de construção.](images/fpf/04-botao.webp?v=3)
 
 A acessibilidade também fez parte do processo, utilizando as WCAG 2.1 como referência. Um exemplo foi a definição de um estado de foco com a cor `#3366FF` e um contorno branco para melhorar a visibilidade em diferentes fundos.
 
-![O estado de foco num fundo claro e num fundo escuro. Nos dois fundos em que o azul não chega ao contraste mínimo, o contorno branco garante a visibilidade.](images/fpf/05-foco.webp?v=2)
+![O estado de foco num fundo claro e num fundo escuro. Nos dois fundos em que o azul não chega ao contraste mínimo, o contorno branco garante a visibilidade.](images/fpf/05-foco.webp?v=3)
 
 Para facilitar a utilização, organizámos a biblioteca num único ficheiro Figma, com documentação individual dos componentes, regras de utilização, Design Tokens e Changelog.
 
-![A estrutura de páginas do ficheiro e duas páginas reais da documentação do botão.](images/fpf/06-documentacao.webp?v=2)
+![A estrutura de páginas do ficheiro e duas páginas reais da documentação do botão.](images/fpf/06-documentacao.webp?v=3)
 
 ## Da biblioteca aos produtos reais
 
@@ -64,7 +64,7 @@ Dos quatro produtos iniciais, **dois alcançaram adoção completa**, o site ins
 
 Os novos projetos passaram a utilizar o Design System desde o início.
 
-![Componentes partilhados no site Resultados e no site institucional.](images/fpf/07-aplicacao.webp?v=2)
+![Componentes partilhados no site Resultados e no site institucional.](images/fpf/07-aplicacao.webp?v=3)
 
 Durante o ano seguinte, continuei a acompanhar a manutenção e evolução da biblioteca, respondendo a novas necessidades através de tickets, incluindo componentes de tabelas para a plataforma Score.
 
@@ -78,7 +78,7 @@ O projeto estabeleceu uma linguagem visual partilhada e uma base reutilizável p
 - 100% dos novos projetos a utilizar o Design System, segundo os resultados acompanhados.
 - 12 meses adicionais de manutenção e evolução.
 
-![Adoção ao fim dos seis meses, separando adoção completa de adoção parcial.](images/fpf/08-resultados.webp?v=2)
+![Adoção ao fim dos seis meses, separando adoção completa de adoção parcial.](images/fpf/08-resultados.webp?v=3)
 
 A maior aprendizagem foi perceber que **o sucesso de um Design System depende tanto da sua construção como da sua adoção**.
 
