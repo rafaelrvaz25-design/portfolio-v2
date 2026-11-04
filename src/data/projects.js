@@ -11,15 +11,7 @@ export const projects = [
     client: "Federação Portuguesa de Futebol",
     year: "2023 a 2024",
     color: "#e4e4e4",
-    images: {
-      "Problema": ["Inventário: o mesmo componente com estilos diferentes nos 4 produtos"],
-      "Processo": ["Os 4 produtos em scope: Resultados, Bilheteira, institucional e Portugal Store"],
-      "Solução": [
-        "O ficheiro Figma: lista de páginas e canvas de um componente",
-        "Documentação do botão: hierarquia, construção e estados",
-      ],
-      "Resultados": ["Produtos construídos com o sistema, incluindo a plataforma Score"],
-    },
+    images: {}, // as figuras do FPF vivem no próprio texto (content/01-design-system-fpf.md)
   },
   {
     slug: "rrs-pingo-doce",

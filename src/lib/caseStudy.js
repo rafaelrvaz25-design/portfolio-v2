@@ -11,6 +11,25 @@ function highlightPending(html) {
   return html.replace(/\[(por confirmar|por preencher)\]/gi, '<mark>$1</mark>');
 }
 
+// Uma linha só com ![legenda](caminho) vira uma figura larga entre blocos de texto.
+const FIGURE = /^!\[(.*)\]\((.+)\)\s*$/;
+function toBlocks(lines) {
+  const blocks = [];
+  let buf = [];
+  const flush = () => {
+    const md = buf.join('\n').trim();
+    if (md) blocks.push({ type: 'html', html: highlightPending(marked.parse(md)) });
+    buf = [];
+  };
+  for (const line of lines) {
+    const m = line.trim().match(FIGURE);
+    if (m) { flush(); blocks.push({ type: 'figure', caption: m[1], src: m[2] }); }
+    else buf.push(line);
+  }
+  flush();
+  return blocks;
+}
+
 export function loadCaseStudy(file) {
   const raw = fs.readFileSync(path.join(process.cwd(), 'content', file), 'utf8');
   const lines = raw.split('\n');
@@ -43,10 +62,7 @@ export function loadCaseStudy(file) {
 
   const visible = sections
     .filter((s) => !HIDDEN_SECTIONS.includes(s.title))
-    .map((s) => ({
-      title: s.title,
-      html: highlightPending(marked.parse(s.body.join('\n'))),
-    }));
+    .map((s) => ({ title: s.title, blocks: toBlocks(s.body) }));
 
   const impact = facts.find((f) => f.label === 'Impacto');
   return {

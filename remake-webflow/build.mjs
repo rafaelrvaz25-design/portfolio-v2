@@ -49,7 +49,7 @@ function loadStudy(file) {
     headline,
     facts: facts.filter((f) => f.label !== 'Impacto'),
     impact: impact ? impact.value.charAt(0).toUpperCase() + impact.value.slice(1) : '',
-    sections: sections.filter((s) => !HIDDEN.includes(s.title)).map((s) => ({ title: s.title, html: marked.parse(s.md.join('\n')) })),
+    sections: sections.filter((s) => !HIDDEN.includes(s.title)).map((s) => ({ title: s.title, html: marked.parse(s.md.filter((l) => !/^!\[/.test(l.trim())).join('\n')) })),
   };
 }
 

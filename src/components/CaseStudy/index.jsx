@@ -17,7 +17,17 @@ const slideUp = {
   enter: (i) => ({ y: 0, transition: { duration: 0.6, ease: [0.33, 1, 0.68, 1], delay: 0.02 * i } }),
 };
 
-function Figure({ caption, color }) {
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+function Figure({ caption, color, src }) {
+  if (src) {
+    return (
+      <motion.figure className={styles.figure} {...reveal}>
+        <img className={styles.image} src={`${BASE}/${src.replace(/^\//, '')}`} alt={caption} loading="lazy" decoding="async" />
+        <figcaption>{caption}</figcaption>
+      </motion.figure>
+    );
+  }
   return (
     <motion.figure className={styles.figure} {...reveal}>
       <div className={styles.frame} style={{ backgroundColor: color }}>
@@ -69,20 +79,35 @@ export default function CaseStudy({ project, study, number, next }) {
         </motion.section>
       )}
 
-      {study.sections.map((section, i) => (
-        <section key={section.title} className={styles.section}>
-          <motion.div className={styles.sectionGrid} {...reveal}>
-            <div className={styles.sectionHead}>
-              <span>{String(i + 1).padStart(2, '0')}</span>
-              <h2>{section.title}</h2>
-            </div>
-            <div className={styles.prose} dangerouslySetInnerHTML={{ __html: section.html }} />
-          </motion.div>
-          {(project.images[section.title] || []).map((caption) => (
-            <Figure key={caption} caption={caption} color={project.color} />
-          ))}
-        </section>
-      ))}
+      {study.sections.map((section, i) => {
+        const [first, ...rest] = section.blocks;
+        const lead = first && first.type === 'html' ? first : null;
+        const after = lead ? rest : section.blocks;
+        return (
+          <section key={section.title} className={styles.section}>
+            <motion.div className={styles.sectionGrid} {...reveal}>
+              <div className={styles.sectionHead}>
+                <span>{String(i + 1).padStart(2, '0')}</span>
+                <h2>{section.title}</h2>
+              </div>
+              {lead && <div className={styles.prose} dangerouslySetInnerHTML={{ __html: lead.html }} />}
+            </motion.div>
+            {after.map((block, j) =>
+              block.type === 'figure' ? (
+                <Figure key={j} caption={block.caption} src={block.src} />
+              ) : (
+                <motion.div key={j} className={`${styles.sectionGrid} ${styles.continued}`} {...reveal}>
+                  <div aria-hidden="true" />
+                  <div className={styles.prose} dangerouslySetInnerHTML={{ __html: block.html }} />
+                </motion.div>
+              )
+            )}
+            {(project.images?.[section.title] || []).map((caption) => (
+              <Figure key={caption} caption={caption} color={project.color} />
+            ))}
+          </section>
+        );
+      })}
 
       <section className={styles.next}>
         <p className={styles.sectionLabel}>Próximo projeto</p>
