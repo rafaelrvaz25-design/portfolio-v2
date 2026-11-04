@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const lineVariants = {
   hidden: { y: '105%' },
-  show: (i) => ({ y: '0%', transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1], delay: i } }),
+  show: (i) => ({ y: '0%', transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1], delay: i } }),
 };
 
 // Linhas que sobem de dentro de uma máscara. O título inteiro dispara de uma vez
@@ -33,10 +33,10 @@ export function FadeUp({ children, className, style, delay = 0, as = 'div' }) {
     <M
       className={className}
       style={style}
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1], delay }}
+      viewport={{ once: true, margin: '0px 0px 120px 0px' }}
+      transition={{ duration: 0.4, ease: 'easeOut', delay }}
     >
       {children}
     </M>

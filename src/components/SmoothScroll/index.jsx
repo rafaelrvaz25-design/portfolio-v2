@@ -7,19 +7,26 @@ import { usePathname } from 'next/navigation';
 export default function SmoothScroll() {
   const pathname = usePathname();
 
+  // Só a página inicial usa scroll suave (o palco de projetos precisa dele para as paragens).
+  // Nos case studies o scroll é o nativo do browser: mais leve e mais direto para ler.
+  // lerp mais alto = menos inércia: a página pára quase logo que o gesto acaba.
   useEffect(() => {
+    if (!pathname || pathname.includes('/projetos')) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     let instance;
+    let cancelled = false;
     (async () => {
       const LocomotiveScroll = (await import('locomotive-scroll')).default;
-      instance = new LocomotiveScroll({ lenisOptions: { lerp: 0.1 } });
+      if (cancelled) return;
+      instance = new LocomotiveScroll({ lenisOptions: { lerp: 0.2, wheelMultiplier: 1 } });
       window.__scroll = instance;
     })();
     return () => {
+      cancelled = true;
       instance && instance.destroy();
       window.__scroll = undefined;
     };
-  }, []);
+  }, [pathname]);
 
   // Ao mudar de página: vai para a âncora, se houver, ou para o topo.
   useEffect(() => {
