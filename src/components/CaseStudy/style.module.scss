@@ -7,18 +7,22 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
 .page {
   background: var(--paper);
   color: $ink;
+  /* Grelha dos case studies: estica até 1200px; a partir daí só cresce a margem. */
+  --cs-max: 1200px;
+  --cs-pad: 40px;
+  --cs-text: 720px;
 }
 
 /* ---------- hero ---------- */
 .hero {
   background: $dark;
   color: #fff;
-  padding: 180px var(--page) 90px;
+  padding: 180px var(--cs-pad) 90px;
   display: flex;
   justify-content: center;
 }
 .heroInner {
-  max-width: 1400px;
+  max-width: var(--cs-max);
   width: 100%;
 }
 .back {
@@ -44,7 +48,7 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
   line-height: 1.08;
   letter-spacing: -0.02em;
   margin: 0;
-  max-width: 1200px;
+  max-width: 1000px;
 }
 .mask {
   display: inline-flex;
@@ -81,22 +85,22 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
 /* ---------- cover ---------- */
 .cover {
   background: linear-gradient($dark 50%, var(--paper) 50%);
-  padding: 0 var(--page);
+  padding: 0 var(--cs-pad);
   display: flex;
   justify-content: center;
 }
 .coverFrame {
   position: relative;
   width: 100%;
-  max-width: 1400px;
+  max-width: var(--cs-max);
   aspect-ratio: 16 / 9;
 }
 
 /* ---------- impact ---------- */
 .impact {
-  max-width: 1000px;
+  max-width: calc(var(--cs-text) + 2 * var(--cs-pad));
   margin: 140px auto 40px;
-  padding: 0 40px;
+  padding: 0 var(--cs-pad);
 }
 .sectionLabel {
   font-size: 12px;
@@ -114,25 +118,24 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
 
 /* ---------- sections ---------- */
 .section {
-  padding: 0 var(--page);
+  padding: 0 var(--cs-pad);
   margin-top: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .sectionGrid {
+  /* Informação centrada: título e texto numa só coluna ao centro da página. */
   width: 100%;
-  max-width: 1400px;
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr) minmax(0, 680px);
-  gap: 60px;
+  max-width: var(--cs-text);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
   padding-top: 30px;
   border-top: 1px solid $line;
+  > div:empty { display: none; }
 }
 .sectionHead {
-  position: sticky;
-  top: 40px;
-  align-self: start;
   span {
     display: block;
     font-size: 13px;
@@ -213,7 +216,7 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
 /* ---------- figures ---------- */
 .figure {
   width: 100%;
-  max-width: 1400px;
+  max-width: var(--cs-max);
   margin: 70px 0 0;
   figcaption {
     margin-top: 14px;
@@ -243,8 +246,9 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
   background: $dark;
   color: #fff;
   margin-top: 200px;
-  padding: 120px var(--page) 40px;
+  padding: 120px var(--cs-pad) 40px;
   .sectionLabel { color: rgba(255, 255, 255, 0.5); }
+  > * { max-width: var(--cs-max); margin-left: auto; margin-right: auto; }
 }
 .nextLink {
   display: flex;
@@ -287,14 +291,14 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
 
 /* ---------- phones ---------- */
 @media (max-width: 900px) {
+  .page { --cs-pad: 20px; }
   .hero { padding: 120px 20px 60px; }
   .back { margin-bottom: 40px; }
   .facts { margin-top: 50px; grid-template-columns: 1fr 1fr; gap: 24px; }
   .cover { padding: 0 20px; }
   .impact { margin-top: 80px; padding: 0 20px; }
   .section { padding: 0 20px; margin-top: 80px; }
-  .sectionGrid { grid-template-columns: 1fr; gap: 20px; }
-  .sectionHead { position: static; }
+  .sectionGrid { gap: 20px; }
   .sectionHead h2 { font-size: 30px; }
   .prose { font-size: 17px; }
   .figure { margin-top: 40px; }
