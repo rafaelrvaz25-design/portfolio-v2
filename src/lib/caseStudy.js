@@ -13,6 +13,8 @@ function highlightPending(html) {
 
 // Uma linha só com ![legenda](caminho) vira uma figura larga entre blocos de texto.
 const FIGURE = /^!\[(.*)\]\((.+)\)\s*$/;
+const esc = (x) => x.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
 function toBlocks(lines) {
   const blocks = [];
   let buf = [];
@@ -21,8 +23,23 @@ function toBlocks(lines) {
     if (md) blocks.push({ type: 'html', html: highlightPending(marked.parse(md)) });
     buf = [];
   };
+  let stats = null;
   for (const line of lines) {
-    const m = line.trim().match(FIGURE);
+    const t = line.trim();
+    // :::stats ... ::: → números em destaque, na coluna do texto. Cada linha: "número | descrição".
+    if (stats) {
+      if (t === ':::') {
+        const items = stats.map((l) => {
+          const [n, ...d] = l.split('|');
+          return `<div><dt>${esc(n.trim())}</dt><dd>${marked.parseInline(d.join('|').trim())}</dd></div>`;
+        });
+        buf.push('', `<dl class="stats">${items.join('')}</dl>`, '');
+        stats = null;
+      } else if (t) stats.push(t);
+      continue;
+    }
+    if (t === ':::stats') { stats = []; continue; }
+    const m = t.match(FIGURE);
     if (m) { flush(); blocks.push({ type: 'figure', caption: m[1], src: m[2] }); }
     else buf.push(line);
   }

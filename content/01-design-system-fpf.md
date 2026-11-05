@@ -30,7 +30,12 @@ Antes de desenhar, precisávamos de confirmar a necessidade do sistema. A equipa
 
 A análise identificou **27 componentes e 1.313 variações**, revelando inconsistências entre elementos com a mesma função.
 
-![Excerto do inventário: botões e cards de resultados com a mesma função e tratamentos diferentes.](images/fpf/02-inventario.webp?v=4)
+![Excerto do inventário: botões e cards de resultados com a mesma função e tratamentos diferentes.](images/fpf/02-inventario.webp?v=5)
+
+:::stats
+27 | componentes identificados
+1.313 | variações, entre estrutura e estados
+:::
 
 Em vez de tentar abranger todo o ecossistema, definimos quatro plataformas prioritárias: Resultados, Bilheteira, site institucional e Portugal Store.
 
@@ -73,12 +78,13 @@ Durante o ano seguinte, continuei a acompanhar a manutenção e evolução da bi
 O projeto estabeleceu uma linguagem visual partilhada e uma base reutilizável para diferentes produtos da FPF.
 
 **Resultados principais:**
-- 2 dos 4 produtos iniciais com adoção completa.
-- Cerca de 8 projetos adicionais com adoção maioritariamente parcial.
-- 100% dos novos projetos a utilizar o Design System, segundo os resultados acompanhados.
-- 12 meses adicionais de manutenção e evolução.
 
-![Adoção ao fim dos seis meses, separando adoção completa de adoção parcial.](images/fpf/08-resultados.webp?v=4)
+:::stats
+2/4 | produtos iniciais com **adoção completa**: site institucional e Portugal Store
+~8 | projetos de backoffice, a maioria com **adoção parcial**; o Score com adoção praticamente total
+100% | dos novos projetos construídos com o Design System, segundo os resultados acompanhados
+12 | meses adicionais de manutenção e evolução
+:::
 
 A maior aprendizagem foi perceber que **o sucesso de um Design System depende tanto da sua construção como da sua adoção**.
 
