@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RRS Pingo Doce · Rafael Vaz</title>
-<meta name="description" content="Simplificar a correção de artigos no quiosque de self-checkout do Pingo Doce">
+<meta name="description" content="Simplificar a correção de artigos no self-checkout do Pingo Doce">
 <link rel="preload" href="../../fonts/outfit-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../styles.css">
 <script defer src="../../main.js"></script>
@@ -27,9 +27,9 @@
     <div class="container container-left intro-grid">
       <div class="reveal">
         <div class="label-text label-gap">Self-checkout · Fujitsu, para o Pingo Doce</div>
-        <h1 class="heading heading-intro">Simplificar a correção de artigos no quiosque de self-checkout do Pingo Doce</h1>
-        <p class="long-paragraph intro-p">Em produção nas lojas Pingo Doce. Corrigir um tabuleiro deixou de passar pelo POS e passou a ter um fluxo próprio no menu do supervisor, com o motivo de cada remoção sempre registado</p>
-        <dl class="facts"><div><dt>Papel</dt><dd>UX/UI Designer, na Monday</dd></div><div><dt>Cliente</dt><dd>Fujitsu, para o Pingo Doce</dd></div><div><dt>Modelo</dt><dd>pacote de horas contratado à Monday</dd></div><div><dt>Dispositivo</dt><dd>RRS, o quiosque de self-checkout da Comida Fresca</dd></div><div><dt>Duração</dt><dd>2 semanas</dd></div><div><dt>Equipa</dt><dd>eu, como único designer, com 2 desenvolvedores da Fujitsu; sessões mediadas por um gestor de projeto da Monday</dd></div></dl>
+        <h1 class="heading heading-intro">Simplificar a correção de artigos no self-checkout do Pingo Doce</h1>
+        <p class="long-paragraph intro-p"></p>
+        <dl class="facts"><div><dt>Áreas</dt><dd>UX/UI Design · Interaction Design · Retail Technology</dd></div><div><dt>Cliente</dt><dd>Pingo Doce</dd></div><div><dt>Contexto</dt><dd>Projeto com a Fujitsu</dd></div><div><dt>Papel</dt><dd>UX/UI Designer</dd></div><div><dt>Duração</dt><dd>2 semanas</dd></div><div><dt>Equipa</dt><dd>1 designer e 2 developers</dd></div></dl>
       </div>
       <div class="intro-cover reveal" style="--bg:#1f2a24"><span>Capa · RRS Pingo Doce</span></div>
     </div>
@@ -38,133 +38,69 @@
   <section class="cs-section tone-blue">
     <div class="container container-left">
       <div class="reveal">
-        <div class="label-text label-gap">01 · Visão geral</div>
-        <h2 class="heading heading-cs">Corrigir um tabuleiro sem sair do RRS</h2>
+        <div class="label-text label-gap">01 · O desafio</div>
+        <h2 class="heading heading-cs">O desafio</h2>
       </div>
-      <div class="reveal"><div class="prose"><p>O RRS é um quiosque que lê o tabuleiro do cliente por câmara e sensores, sem que o cliente registe qualquer artigo. Quando a leitura falhava, o supervisor tinha de corrigir a transação numa janela pequena do sistema de faturação. Em duas semanas desenhei uma opção dedicada para editar tabuleiros, dentro das limitações técnicas da máquina e das exigências do Pingo Doce.</p>
-</div><div class="row"><h3 class="row-title">O meu papel</h3><div class="row-body">
-<p>Fui o único designer do projeto. Trabalhei diretamente com os dois desenvolvedores da Fujitsu, em sessões mediadas por um gestor de projeto da Monday, desde o briefing até aos ecrãs finais.</p>
+      <div class="reveal"><div class="row"><h3 class="row-title">Corrigir uma transação não devia exigir navegar por um sistema inteiro.</h3><div class="row-body">
+<p>Nos quiosques RRS da Comida Fresca, os artigos do tabuleiro são reconhecidos automaticamente. Para corrigir uma transação, o supervisor entrava em Modo Direto e usava uma pequena janela do sistema POS, no topo do ecrã. Uma tarefa simples tornava-se mais trabalhosa do que o necessário.</p>
+<p>O objetivo era criar uma funcionalidade dedicada para adicionar e remover artigos, integrada na interface existente e adaptada ao equipamento.</p>
+<p>Fui o único UX/UI Designer do projeto: analisei o fluxo original e desenhei a solução em colaboração com dois developers da Fujitsu.</p>
 </div></div></div>
       
-      <figure class="figure reveal">
-        <div class="figure-frame" style="--bg:#ebe7e1"><span>Imagem por enviar</span></div>
-        <figcaption>O RRS na loja, o quiosque da Comida Fresca</figcaption>
-      </figure>
     </div>
   </section>
   <section class="cs-section tone-white">
     <div class="container container-left">
       <div class="reveal">
-        <div class="label-text label-gap">02 · Problema</div>
-        <h2 class="heading heading-cs">Um POS pequeno demais para corrigir um erro</h2>
+        <div class="label-text label-gap">02 · Desenhar dentro das limitações</div>
+        <h2 class="heading heading-cs">Desenhar dentro das limitações</h2>
       </div>
-      <div class="reveal"><div class="prose"><p><strong>Contexto.</strong> A Fujitsu contrata à Monday um pacote de horas para responder a pedidos sobre as máquinas do Pingo Doce: alterações de fluxo, novos requisitos legais, novos métodos de pagamento. Cada pedido chega com o seu próprio briefing, limitações técnicas e exigências do cliente.</p>
-<p><strong>A dor.</strong> Quando havia um problema numa transação, o operador passava o cartão de supervisor e entrava em Modo Direto, que abre o POS. A janela do POS ocupa só uma pequena parte do ecrã, e o briefing da Fujitsu trazia a queixa dos operadores: corrigir ou remover um artigo ali era difícil.</p>
-<p><strong>Objetivo.</strong> Permitir ao supervisor remover e adicionar artigos de forma simples, sem sair do ecrã do RRS.</p>
-<p><strong>Restrições.</strong></p>
-<ul>
-<li><strong>Técnicas:</strong> para ser rápido e focado no reconhecimento de artigos, o RRS não suporta imagens nem grandes processamentos.</li>
-<li><strong>De negócio:</strong> o motivo da remoção de um artigo tem de ser sempre indicado.</li>
-</ul>
-</div></div>
+      <div class="reveal"><div class="row"><h3 class="row-title">Uma solução simples era também a mais adequada ao equipamento.</h3><div class="row-body">
+<p>Recebi o problema já identificado e analisei o fluxo existente através de uma sequência de screenshots partilhada pela equipa.</p>
+<p>O prazo de duas semanas e o hardware condicionavam as opções: o RRS não suporta imagens de produtos nem processamento mais exigente.</p>
+<p>Uma das primeiras abordagens incluía imagens e ícones, mas foi descartada por não ser compatível com o equipamento. Com os developers, optámos por texto, listas e categorias: a clareza tinha de vir da organização, não dos recursos gráficos.</p>
+</div></div></div>
       
-      <figure class="figure reveal">
-        <div class="figure-frame" style="--bg:#ebe7e1"><span>Imagem por enviar</span></div>
-        <figcaption>Modo Direto: a janela pequena do POS dentro do ecrã</figcaption>
-      </figure>
     </div>
   </section>
   <section class="cs-section tone-blue">
     <div class="container container-left">
       <div class="reveal">
-        <div class="label-text label-gap">03 · Processo</div>
-        <h2 class="heading heading-cs">Perceber a máquina antes do ecrã</h2>
+        <div class="label-text label-gap">03 · Simplificar os fluxos de correção</div>
+        <h2 class="heading heading-cs">Simplificar os fluxos de correção</h2>
       </div>
-      <div class="reveal"><div class="row"><h3 class="row-title">Perceber a máquina antes do ecrã</h3><div class="row-body">
-<p>As limitações do RRS eliminavam à partida muitas soluções visuais, como menus com ícones ou imagens dos produtos. Cheguei a explorar uma versão com imagens de produto, mas não servia de nada desenhar um ecrã bonito e cheio de funcionalidades que o RRS não conseguia comportar.</p>
-</div></div><div class="row"><h3 class="row-title">Decisões</h3><div class="row-body">
-<ul>
-<li><strong>Só texto e listas.</strong> Sem imagens, a clareza tinha de vir da organização: artigos agrupados por tabuleiro e, na adição, por categoria.</li>
-<li><strong>Manter a lógica do cesto.</strong> A lista por tabuleiro segue a forma como o cliente já pensa na compra, por isso o supervisor reconhece o que está a ver.</li>
-<li><strong>O motivo como passo obrigatório.</strong> Em vez de um campo opcional, remover um artigo abre um modal com os motivos possíveis: erro no reconhecimento, artigo duplicado por engano ou cliente desistiu do artigo.</li>
-<li><strong>Remover um a um, adicionar em volume.</strong> Remoções são correções pontuais; adições podem envolver vários artigos, por isso a adição permite seleção múltipla.</li>
-<li><strong>Junto do que já existe.</strong> A nova opção fica no menu do supervisor, ao lado de Apagar transação, onde o supervisor já procura este tipo de ação.</li>
-</ul>
+      <div class="reveal"><div class="row"><h3 class="row-title">Duas operações diferentes exigiam comportamentos diferentes.</h3><div class="row-body">
+<p>Os dois percursos começam no mesmo sítio. Uma nova opção, Editar tabuleiros, mostra a transação organizada por tabuleiro, a mesma lógica do cesto do cliente.</p>
+<p>Na remoção, o supervisor retira um artigo de cada vez e escolhe o motivo: erro no reconhecimento, artigo duplicado ou desistência do cliente. É um passo obrigatório, porque o Pingo Doce exige que o motivo seja sempre indicado.</p>
+<p>Na adição, pode selecionar vários artigos por categoria antes de confirmar, sem repetir a ação para cada produto.</p>
+<p>Colocámos a funcionalidade no menu do supervisor, ao lado de Apagar transação, numa área que ele já conhece. Assim, corrigir artigos deixou de depender da janela do POS.</p>
 </div></div></div>
       
-      <figure class="figure reveal">
-        <div class="figure-frame" style="--bg:#ebe7e1"><span>Imagem por enviar</span></div>
-        <figcaption>A exploração descartada, com imagens de produto</figcaption>
-      </figure>
     </div>
   </section>
   <section class="cs-section tone-white">
     <div class="container container-left">
       <div class="reveal">
-        <div class="label-text label-gap">04 · Solução</div>
-        <h2 class="heading heading-cs">Uma opção dedicada para editar tabuleiros</h2>
+        <div class="label-text label-gap">04 · Da proposta à implementação</div>
+        <h2 class="heading heading-cs">Da proposta à implementação</h2>
       </div>
-      <div class="reveal"><div class="row"><h3 class="row-title">Remover um artigo (3 ecrãs)</h3><div class="row-body">
-<ol>
-<li>Ecrã de acesso ao supervisor, depois de passar o cartão.</li>
-<li>Lista por tabuleiro, mantendo a lógica do cesto.</li>
-<li>Modal com os motivos de remoção.</li>
-</ol>
-</div></div><div class="row"><h3 class="row-title">Adicionar artigos (3 ecrãs)</h3><div class="row-body">
-<ol>
-<li>Lista por tabuleiro, mantendo a lógica do cesto.</li>
-<li>Lista de artigos, organizada por categoria.</li>
-<li>Seleção múltipla de artigos.</li>
-</ol>
+      <div class="reveal"><div class="row"><h3 class="row-title">Uma solução viável, aprovada e preparada para o contexto real.</h3><div class="row-body">
+<p>Ao longo das duas semanas, discuti as decisões de interface diretamente com os developers da Fujitsu, para garantir que respeitavam as limitações técnicas do RRS.</p>
+<p>A proposta final foi apresentada e aprovada pela Fujitsu e pelo Pingo Doce, e chegou depois a produção.</p>
 </div></div></div>
       
-      <figure class="figure reveal">
-        <div class="figure-frame" style="--bg:#ebe7e1"><span>Imagem por enviar</span></div>
-        <figcaption>Fluxo de remoção: os 3 ecrãs</figcaption>
-      </figure>
-      <figure class="figure reveal">
-        <div class="figure-frame" style="--bg:#ebe7e1"><span>Imagem por enviar</span></div>
-        <figcaption>Fluxo de adição: os 3 ecrãs</figcaption>
-      </figure>
     </div>
   </section>
   <section class="cs-section tone-blue">
     <div class="container container-left">
       <div class="reveal">
-        <div class="label-text label-gap">05 · Resultados</div>
-        <h2 class="heading heading-cs">Em produção nas lojas</h2>
+        <div class="label-text label-gap">05 · Resultados e aprendizagens</div>
+        <h2 class="heading heading-cs">Resultados e aprendizagens</h2>
       </div>
-      <div class="reveal"><div class="prose"><p>Editar tabuleiros passou a fazer parte do menu do supervisor e os dois fluxos já estão em produção nas lojas Pingo Doce, sem problemas reportados na implementação.</p>
-<ul>
-<li><strong>Para os supervisores:</strong> corrigir um artigo deixou de exigir a janela pequena do POS.</li>
-<li><strong>Para o Pingo Doce:</strong> cada remoção fica registada com um motivo, como era exigido.</li>
-<li><strong>Para a Fujitsu:</strong> uma solução que cabe nas limitações técnicas do RRS.</li>
-</ul>
+      <div class="reveal"><div class="prose"><p>Este projeto permitiu-me assumir o desenho de uma solução completa, num prazo curto e com restrições técnicas concretas.</p>
+<p>A principal aprendizagem foi perceber que <strong>uma boa experiência não precisa de ser visualmente complexa</strong>. Precisa de responder ao problema, respeitar o contexto de utilização e ser tecnicamente viável.</p>
+<p>A aprovação da Fujitsu e do Pingo Doce confirmou a aceitação da proposta, mas não houve testes de usabilidade com os supervisores. Num projeto semelhante, procuraria complementar essa aprovação com validação direta junto de quem usa o equipamento.</p>
 </div></div>
-      
-    </div>
-  </section>
-  <section class="cs-section tone-white">
-    <div class="container container-left">
-      <div class="reveal">
-        <div class="label-text label-gap">06 · Aprendizagens</div>
-        <h2 class="heading heading-cs">O que aprendi</h2>
-      </div>
-      <div class="reveal"><div class="row"><h3 class="row-title">O que funcionou</h3><div class="row-body">
-<ul>
-<li><strong>Começar pelas limitações.</strong> Conhecer cedo o que o RRS não suporta poupou tempo em soluções que nunca iriam ser implementadas.</li>
-<li><strong>Falar diretamente com quem implementa.</strong> Discutir as soluções com os desenvolvedores da Fujitsu, sessão a sessão, manteve o design dentro do que era possível construir.</li>
-</ul>
-</div></div><div class="row"><h3 class="row-title">O que faria diferente</h3><div class="row-body">
-<ul>
-<li><strong>Ouvir os supervisores nas lojas.</strong> Num projeto de duas semanas havia pouca margem, mas falar diretamente com supervisores do Pingo Doce teria ajudado a identificar outros pontos de fricção além do que vinha no briefing.</li>
-</ul>
-</div></div><div class="row"><h3 class="row-title">O que desenvolvi</h3><div class="row-body">
-<ul>
-<li>Desenhar para hardware com recursos limitados.</li>
-<li>Trabalhar como único designer, diretamente com a equipa de desenvolvimento do cliente, num prazo curto.</li>
-</ul>
-</div></div></div>
       
     </div>
   </section>
