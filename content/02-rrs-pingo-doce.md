@@ -1,87 +1,71 @@
 # Case study 02: RRS, Pingo Doce
 
-## Simplificar a correção de artigos no quiosque de self-checkout do Pingo Doce
+## Simplificar a correção de artigos no self-checkout do Pingo Doce
 
 ### Ficha rápida
-- **Papel:** UX/UI Designer, na Monday
-- **Cliente:** Fujitsu, para o Pingo Doce
-- **Modelo:** pacote de horas contratado à Monday
-- **Dispositivo:** RRS, o quiosque de self-checkout da Comida Fresca
+- **Áreas:** UX/UI Design · Interaction Design · Retail Technology
+- **Cliente:** Pingo Doce
+- **Contexto:** Projeto com a Fujitsu
+- **Papel:** UX/UI Designer
 - **Duração:** 2 semanas
-- **Equipa:** eu, como único designer, com 2 desenvolvedores da Fujitsu; sessões mediadas por um gestor de projeto da Monday
-- **Impacto:** em produção nas lojas Pingo Doce. Corrigir um tabuleiro deixou de passar pelo POS e passou a ter um fluxo próprio no menu do supervisor, com o motivo de cada remoção sempre registado
+- **Equipa:** 1 designer e 2 developers
 
 ---
 
-## Visão geral
+## O desafio
 
-O RRS é um quiosque que lê o tabuleiro do cliente por câmara e sensores, sem que o cliente registe qualquer artigo. Quando a leitura falhava, o supervisor tinha de corrigir a transação numa janela pequena do sistema de faturação. Em duas semanas desenhei uma opção dedicada para editar tabuleiros, dentro das limitações técnicas da máquina e das exigências do Pingo Doce.
+### Corrigir uma transação não devia exigir navegar por um sistema inteiro.
 
-### O meu papel
-Fui o único designer do projeto. Trabalhei diretamente com os dois desenvolvedores da Fujitsu, em sessões mediadas por um gestor de projeto da Monday, desde o briefing até aos ecrãs finais.
+Nos quiosques RRS da Comida Fresca, os artigos do tabuleiro são reconhecidos automaticamente. Para corrigir uma transação, o supervisor entrava em Modo Direto e usava uma pequena janela do sistema POS, no topo do ecrã. Uma tarefa simples tornava-se mais trabalhosa do que o necessário.
 
-## Problema
+O objetivo era criar uma funcionalidade dedicada para adicionar e remover artigos, integrada na interface existente e adaptada ao equipamento.
 
-**Contexto.** A Fujitsu contrata à Monday um pacote de horas para responder a pedidos sobre as máquinas do Pingo Doce: alterações de fluxo, novos requisitos legais, novos métodos de pagamento. Cada pedido chega com o seu próprio briefing, limitações técnicas e exigências do cliente.
+Fui o único UX/UI Designer do projeto: analisei o fluxo original e desenhei a solução em colaboração com dois developers da Fujitsu.
 
-**A dor.** Quando havia um problema numa transação, o operador passava o cartão de supervisor e entrava em Modo Direto, que abre o POS. A janela do POS ocupa só uma pequena parte do ecrã, e o briefing da Fujitsu trazia a queixa dos operadores: corrigir ou remover um artigo ali era difícil.
+![O fluxo original: do menu do supervisor ao Modo Direto, onde a correção acontecia na janela do POS. Screenshots do briefing, com as marcações a vermelho originais.](images/rrs/01-contexto.webp?v=1)
 
-**Objetivo.** Permitir ao supervisor remover e adicionar artigos de forma simples, sem sair do ecrã do RRS.
+## Desenhar dentro das limitações
 
-**Restrições.**
-- **Técnicas:** para ser rápido e focado no reconhecimento de artigos, o RRS não suporta imagens nem grandes processamentos.
-- **De negócio:** o motivo da remoção de um artigo tem de ser sempre indicado.
+### Uma solução simples era também a mais adequada ao equipamento.
 
-## Processo
+Recebi o problema já identificado e analisei o fluxo existente através de uma sequência de screenshots partilhada pela equipa.
 
-### Perceber a máquina antes do ecrã
-As limitações do RRS eliminavam à partida muitas soluções visuais, como menus com ícones ou imagens dos produtos. Cheguei a explorar uma versão com imagens de produto, mas não servia de nada desenhar um ecrã bonito e cheio de funcionalidades que o RRS não conseguia comportar.
+O prazo de duas semanas e o hardware condicionavam as opções: o RRS não suporta imagens de produtos nem processamento mais exigente.
 
-### Decisões
-- **Só texto e listas.** Sem imagens, a clareza tinha de vir da organização: artigos agrupados por tabuleiro e, na adição, por categoria.
-- **Manter a lógica do cesto.** A lista por tabuleiro segue a forma como o cliente já pensa na compra, por isso o supervisor reconhece o que está a ver.
-- **O motivo como passo obrigatório.** Em vez de um campo opcional, remover um artigo abre um modal com os motivos possíveis: erro no reconhecimento, artigo duplicado por engano ou cliente desistiu do artigo.
-- **Remover um a um, adicionar em volume.** Remoções são correções pontuais; adições podem envolver vários artigos, por isso a adição permite seleção múltipla.
-- **Junto do que já existe.** A nova opção fica no menu do supervisor, ao lado de Apagar transação, onde o supervisor já procura este tipo de ação.
+Uma das primeiras abordagens incluía imagens e ícones, mas foi descartada por não ser compatível com o equipamento. Com os developers, optámos por texto, listas e categorias: a clareza tinha de vir da organização, não dos recursos gráficos.
 
-## Solução
+![À esquerda, a exploração inicial com imagens de produto, descartada. À direita, a solução escolhida, só com texto e listas.](images/rrs/02-exploracao.webp?v=1)
 
-### Remover um artigo (3 ecrãs)
-1. Ecrã de acesso ao supervisor, depois de passar o cartão.
-2. Lista por tabuleiro, mantendo a lógica do cesto.
-3. Modal com os motivos de remoção.
+## Simplificar os fluxos de correção
 
-### Adicionar artigos (3 ecrãs)
-1. Lista por tabuleiro, mantendo a lógica do cesto.
-2. Lista de artigos, organizada por categoria.
-3. Seleção múltipla de artigos.
+### Duas operações diferentes exigiam comportamentos diferentes.
 
-## Resultados
+Os dois percursos começam no mesmo sítio. Uma nova opção, Editar tabuleiros, mostra a transação organizada por tabuleiro, a mesma lógica do cesto do cliente.
 
-Editar tabuleiros passou a fazer parte do menu do supervisor e os dois fluxos já estão em produção nas lojas Pingo Doce, sem problemas reportados na implementação.
+Na remoção, o supervisor retira um artigo de cada vez e escolhe o motivo: erro no reconhecimento, artigo duplicado ou desistência do cliente. É um passo obrigatório, porque o Pingo Doce exige que o motivo seja sempre indicado.
 
-- **Para os supervisores:** corrigir um artigo deixou de exigir a janela pequena do POS.
-- **Para o Pingo Doce:** cada remoção fica registada com um motivo, como era exigido.
-- **Para a Fujitsu:** uma solução que cabe nas limitações técnicas do RRS.
+Na adição, pode selecionar vários artigos por categoria antes de confirmar, sem repetir a ação para cada produto.
 
-## Aprendizagens
+![Os dois percursos com os ecrãs finais. Remover: um artigo de cada vez, com motivo obrigatório. Adicionar: seleção múltipla por categoria.](images/rrs/03-fluxos.webp?v=1)
 
-### O que funcionou
-- **Começar pelas limitações.** Conhecer cedo o que o RRS não suporta poupou tempo em soluções que nunca iriam ser implementadas.
-- **Falar diretamente com quem implementa.** Discutir as soluções com os desenvolvedores da Fujitsu, sessão a sessão, manteve o design dentro do que era possível construir.
+Colocámos a funcionalidade no menu do supervisor, ao lado de Apagar transação, numa área que ele já conhece. Assim, corrigir artigos deixou de depender da janela do POS.
 
-### O que faria diferente
-- **Ouvir os supervisores nas lojas.** Num projeto de duas semanas havia pouca margem, mas falar diretamente com supervisores do Pingo Doce teria ajudado a identificar outros pontos de fricção além do que vinha no briefing.
+![O menu do supervisor antes e depois: Editar tabuleiros fica ao lado de Apagar transação.](images/rrs/04-menu.webp?v=1)
 
-### O que desenvolvi
-- Desenhar para hardware com recursos limitados.
-- Trabalhar como único designer, diretamente com a equipa de desenvolvimento do cliente, num prazo curto.
+## Da proposta à implementação
 
----
+### Uma solução viável, aprovada e preparada para o contexto real.
 
-## Imagens necessárias
-1. O RRS na loja (quiosque da Comida Fresca).
-2. Modo Direto: a janela pequena do POS dentro do ecrã.
-3. A exploração descartada com imagens de produto.
-4. Fluxo de remoção: os 3 ecrãs.
-5. Fluxo de adição: os 3 ecrãs.
+Ao longo das duas semanas, discuti as decisões de interface diretamente com os developers da Fujitsu, para garantir que respeitavam as limitações técnicas do RRS.
+
+A proposta final foi apresentada e aprovada pela Fujitsu e pelo Pingo Doce, e chegou depois a produção.
+
+![Ecrãs da proposta final aprovada, em Figma: lista por tabuleiro, seleção de artigos e motivo da remoção.](images/rrs/05-interface.webp?v=1)
+
+## Resultados e aprendizagens
+
+Este projeto permitiu-me assumir o desenho de uma solução completa, num prazo curto e com restrições técnicas concretas.
+
+A principal aprendizagem foi perceber que **uma boa experiência não precisa de ser visualmente complexa**. Precisa de responder ao problema, respeitar o contexto de utilização e ser tecnicamente viável.
+
+A aprovação da Fujitsu e do Pingo Doce confirmou a aceitação da proposta, mas não houve testes de usabilidade com os supervisores. Num projeto semelhante, procuraria complementar essa aprovação com validação direta junto de quem usa o equipamento.

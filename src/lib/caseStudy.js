@@ -15,6 +15,16 @@ function highlightPending(html) {
 const FIGURE = /^!\[(.*)\]\((.+)\)\s*$/;
 const esc = (x) => x.replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
+// Se existir um ficheiro com o mesmo nome e "-mobile" (ex.: 03-fluxos-mobile.webp),
+// a figura usa-o em ecrãs estreitos. O ?v=N do original passa para a versão mobile.
+function mobileVersion(src) {
+  const [file, query] = src.split('?');
+  const mobile = file.replace(/(\.[a-z0-9]+)$/i, '-mobile$1');
+  if (mobile === file) return null;
+  if (!fs.existsSync(path.join(process.cwd(), 'public', mobile.replace(/^\//, '')))) return null;
+  return query ? `${mobile}?${query}` : mobile;
+}
+
 function toBlocks(lines) {
   const blocks = [];
   let buf = [];
@@ -40,7 +50,7 @@ function toBlocks(lines) {
     }
     if (t === ':::stats') { stats = []; continue; }
     const m = t.match(FIGURE);
-    if (m) { flush(); blocks.push({ type: 'figure', caption: m[1], src: m[2] }); }
+    if (m) { flush(); blocks.push({ type: 'figure', caption: m[1], src: m[2], srcMobile: mobileVersion(m[2]) }); }
     else buf.push(line);
   }
   flush();

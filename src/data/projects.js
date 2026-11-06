@@ -21,12 +21,7 @@ export const projects = [
     client: "Fujitsu, para o Pingo Doce",
     year: null, // por confirmar com o Rafa
     color: "#dddddd",
-    images: {
-      "Visão geral": ["O RRS na loja, o quiosque da Comida Fresca"],
-      "Problema": ["Modo Direto: a janela pequena do POS dentro do ecrã"],
-      "Processo": ["A exploração descartada, com imagens de produto"],
-      "Solução": ["Fluxo de remoção: os 3 ecrãs", "Fluxo de adição: os 3 ecrãs"],
-    },
+    images: {}, // as figuras vivem no próprio texto (content/02-rrs-pingo-doce.md)
   },
 ];
 

@@ -15,11 +15,19 @@ const slideUp = {
 
 const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
-function Figure({ caption, color, src }) {
+const url = (src) => `${BASE}/${src.replace(/^\//, '')}`;
+
+function Figure({ caption, color, src, srcMobile }) {
   if (src) {
+    const img = <img className={styles.image} src={url(src)} alt={caption} loading="lazy" decoding="async" />;
     return (
       <motion.figure className={styles.figure} {...reveal}>
-        <img className={styles.image} src={`${BASE}/${src.replace(/^\//, '')}`} alt={caption} loading="lazy" decoding="async" />
+        {srcMobile ? (
+          <picture>
+            <source media="(max-width: 899px)" srcSet={url(srcMobile)} />
+            {img}
+          </picture>
+        ) : img}
         <figcaption>{caption}</figcaption>
       </motion.figure>
     );
@@ -90,7 +98,7 @@ export default function CaseStudy({ project, study, number, next }) {
             </motion.div>
             {after.map((block, j) =>
               block.type === 'figure' ? (
-                <Figure key={j} caption={block.caption} src={block.src} />
+                <Figure key={j} caption={block.caption} src={block.src} srcMobile={block.srcMobile} />
               ) : (
                 <motion.div key={j} className={`${styles.sectionGrid} ${styles.continued}`} {...reveal}>
                   <div aria-hidden="true" />
