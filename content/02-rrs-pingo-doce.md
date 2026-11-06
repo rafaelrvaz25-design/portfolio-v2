@@ -60,7 +60,7 @@ Ao longo das duas semanas, discuti as decisões de interface diretamente com os 
 
 A proposta final foi apresentada e aprovada pela Fujitsu e pelo Pingo Doce, e chegou depois a produção.
 
-![Ecrãs da proposta final aprovada, em Figma: lista por tabuleiro, seleção de artigos e motivo da remoção.](images/rrs/05-interface.webp?v=1)
+![Ecrãs da proposta final aprovada, em Figma: lista por tabuleiro, seleção de artigos e motivo da remoção.](images/rrs/05-interface.webp?v=2)
 
 ## Resultados e aprendizagens
 
