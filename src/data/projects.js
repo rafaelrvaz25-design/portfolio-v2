@@ -23,6 +23,16 @@ export const projects = [
     color: "#dddddd",
     images: {}, // as figuras vivem no próprio texto (content/02-rrs-pingo-doce.md)
   },
+  {
+    slug: "monday-talent-pool",
+    file: "03-monday-talent-pool.md",
+    title: "Monday Talent Pool",
+    tag: "UX/UI e acessibilidade",
+    client: "Monday, projeto interno",
+    year: "2026",
+    color: "#e2e2e2",
+    images: {}, // as figuras vivem no próprio texto (content/03-monday-talent-pool.md)
+  },
 ];
 
 export const person = {
