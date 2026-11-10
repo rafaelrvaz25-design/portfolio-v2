@@ -3,12 +3,11 @@
 ## Um Design System para unificar o ecossistema digital da FPF
 
 ### Ficha rápida
-- **Áreas:** UX/UI Design · Design Systems · Figma · Acessibilidade
 - **Cliente:** Federação Portuguesa de Futebol
-- **Empresa:** Monday
-- **Papel:** UX/UI Designer
-- **Duração:** 6 meses de desenvolvimento + 12 meses de manutenção
-- **Equipa:** 2 designers, 1 Design Lead e 1 Project Manager
+- **Papel:** UX/UI Designer na Monday
+- **Ano:** 2023 a 2024
+- **Duração:** 6 meses + 12 de manutenção
+- **Equipa:** 2 designers, 1 Design Lead e 1 PM
 
 ---
 

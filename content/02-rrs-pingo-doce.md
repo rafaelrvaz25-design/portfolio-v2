@@ -3,9 +3,7 @@
 ## Simplificar a correção de artigos no self-checkout do Pingo Doce
 
 ### Ficha rápida
-- **Áreas:** UX/UI Design · Interaction Design · Retail Technology
 - **Cliente:** Pingo Doce
-- **Contexto:** Projeto com a Fujitsu
 - **Papel:** UX/UI Designer
 - **Duração:** 2 semanas
 - **Equipa:** 1 designer e 2 developers
