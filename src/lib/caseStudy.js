@@ -62,6 +62,7 @@ export function loadCaseStudy(file) {
   const lines = raw.split('\n');
 
   let headline = '';
+  const leadLines = []; // texto entre o título e a ficha: descrição curta no hero
   const facts = [];
   const sections = [];
   let current = null;
@@ -85,6 +86,7 @@ export function loadCaseStudy(file) {
     }
     if (line.trim() === '---') continue;
     if (current) current.body.push(line);
+    else if (headline && !facts.length && line.trim()) leadLines.push(line.trim());
   }
 
   const visible = sections
@@ -94,6 +96,7 @@ export function loadCaseStudy(file) {
   const impact = facts.find((f) => f.label === 'Impacto');
   return {
     headline,
+    lead: leadLines.join(' '),
     facts: facts.filter((f) => f.label !== 'Impacto').map((f) => ({
       ...f,
       value: f.value.replace(/\[(por confirmar)\]/i, 'Por confirmar'),

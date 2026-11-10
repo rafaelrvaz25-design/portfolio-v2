@@ -33,6 +33,17 @@ export const projects = [
     color: "#e2e2e2",
     images: {}, // as figuras vivem no próprio texto (content/03-monday-talent-pool.md)
   },
+  {
+    slug: "gallo",
+    file: "04-gallo.md",
+    title: "Gallo",
+    tag: "Landing page",
+    client: "Gallo",
+    year: "2026",
+    color: "#f8f2d8",
+    cover: "images/gallo/00-capa.webp?v=1", // capa do case study (composição com as versões finais do Figma)
+    images: {}, // as figuras vivem no próprio texto (content/04-gallo.md)
+  },
 ];
 
 export const person = {

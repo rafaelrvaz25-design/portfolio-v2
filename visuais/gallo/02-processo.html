@@ -1,0 +1,56 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+.row{display:grid;grid-template-columns:400px 250px 1fr;gap:30px;align-items:start}
+.panel{height:760px;padding:24px;display:flex;flex-direction:column}
+.k{margin-bottom:14px}
+.crop{flex:1;overflow:hidden;border-radius:6px;border:1px solid #ececec}
+.crop img{width:100%}
+.fstack{display:flex;flex-direction:column;justify-content:space-between;gap:20px;padding:20px 0 20px 16px}
+.bleed{overflow:hidden}.bleed img.t{width:230%;max-width:none}.bleed img.c{width:175%;max-width:none}
+.assets{display:flex;gap:18px;align-items:center;padding-top:16px;border-top:1px solid #ececec;margin-right:16px}.assets img{height:72px;width:auto}
+.thumbs{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;min-height:0}
+.th{display:flex;flex-direction:column;min-height:0}
+.th .crop{flex:1}
+.th .lbl{margin-top:12px;display:flex;flex-direction:column;gap:6px;font-size:14px;color:#404040;line-height:1.35}
+.th .lbl b{font-weight:600;color:#141414;font-size:15px}
+.th.ref .crop{border:1px dashed #9a9a9a;opacity:.72}
+body.m .row{grid-template-columns:1fr;gap:40px}
+body.m .panel{height:auto}
+body.m .found .crop{height:auto}
+body.m .bleed img.t{width:150%}body.m .bleed img.c{width:120%}
+body.m .wire .crop{height:560px;flex:none}
+body.m .wire .crop img{width:62%;margin:0 auto}
+body.m .thumbs{grid-template-columns:repeat(3,1fr);gap:12px}
+body.m .th .crop{height:560px;flex:none}
+body.m .th .lbl{font-size:20px}body.m .th .lbl b{font-size:22px}
+body.m .assets img{height:110px}
+</style></head><body><div id="fig">
+<div class="row">
+  <div class="found">
+    <div class="panel"><p class="kick k">Fundações no Figma</p>
+      <div class="crop fstack"><div class="bleed"><img class="t" src="crops/fund-br-tipo.jpg"></div><div class="bleed"><img class="c" src="crops/fund-br-sem.jpg"></div>
+        <div class="assets"><img src="brand/simbolo.png"><img src="brand/sol.png"><img src="brand/ico_galo.png"></div></div></div>
+    <div class="cap"><h4><span class="num">1</span>Fundações</h4>
+      <p class="indent">Cores em dois modos, escala tipográfica e assets da marca.</p></div>
+  </div>
+  <div class="wire">
+    <div class="panel"><p class="kick k">Wireframe</p>
+      <div class="crop"><img src="crops/wireframe.jpg"></div></div>
+    <div class="cap"><h4><span class="num">2</span>Estrutura</h4>
+      <p class="indent">Secções e conteúdos em baixa fidelidade.</p></div>
+  </div>
+  <div>
+    <div class="panel"><p class="kick k">Propostas em alta fidelidade</p>
+      <div class="thumbs">
+        <div class="th"><div class="crop"><img src="crops/hifi-v1.jpg"></div>
+          <div class="lbl"><b>Primeira proposta</b>Com texto próprio: "Nova cara. Nova garrafa."</div></div>
+        <div class="th"><div class="crop"><img src="crops/hifi-v2.jpg"></div>
+          <div class="lbl"><b>Exploração expressiva</b>Combinações do brandbook e cor sobre imagem.</div></div>
+        <div class="th ref"><div class="crop"><img src="crops/hifi-v3-literal.jpg"></div>
+          <div class="lbl"><b>Literal aos PDFs <span class="tag">Referência</span></b>Seguia à letra o layout dos PDFs do cliente.</div></div>
+      </div></div>
+    <div class="cap"><h4><span class="num">3</span>Exploração</h4>
+      <p class="indent">A versão final juntou a linguagem da exploração expressiva à estrutura e aos textos do cliente.</p></div>
+  </div>
+</div>
+</div></body></html>

@@ -1,0 +1,48 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.head{display:flex;flex-direction:column;gap:12px;padding-bottom:4px}
+.head h3{font-size:28px;font-weight:600;letter-spacing:-.01em}
+.chips{display:flex;gap:18px;flex-wrap:wrap}
+.rowlbl{display:flex;align-items:baseline;gap:16px;margin:44px 0 16px;padding-top:18px;border-top:1px solid #DADADA}
+.rowlbl b{font-size:20px;font-weight:600;flex:none}
+.rowlbl span{font-size:16px;color:#737373}
+.panel{padding:14px}
+.panel img{width:100%;border-radius:6px}
+.pl{display:none}
+body.m .cols{grid-template-columns:1fr;gap:18px}
+body.m .head h3{font-size:36px}
+body.m .rowlbl{flex-direction:column;gap:8px;margin:56px 0 20px}
+body.m .rowlbl b{font-size:34px}body.m .rowlbl span{font-size:26px;line-height:1.4}
+body.m .pl{display:block;font-size:22px;color:#404040;margin:0 0 10px 2px;font-weight:500}
+body.m .hdr{gap:28px}
+</style></head><body><div id="fig">
+<div class="cols hdr">
+  <div class="head"><h3>Brasil</h3><div class="chips">
+    <span class="chip"><i style="background:#86AB29"></i>bg/marca</span>
+    <span class="chip"><i style="background:#232E0A"></i>texto/primário</span>
+    <span class="chip"><i style="background:#F8F2D8"></i>bg/página</span></div></div>
+  <div class="head"><h3>Portugal</h3><div class="chips">
+    <span class="chip"><i style="background:#152C62"></i>bg/marca</span>
+    <span class="chip"><i style="background:#001528"></i>texto/primário</span>
+    <span class="chip"><i style="background:#F8F2D8"></i>bg/página</span></div></div>
+</div>
+
+<div class="rowlbl"><b>Hero</b><span>"Nova garrafa" no Brasil e "Nova imagem" em Portugal, a pedido do cliente.</span></div>
+<div class="cols">
+  <div><p class="pl">Brasil</p><div class="panel"><img src="crops/br-d-hero.jpg"></div></div>
+  <div><p class="pl">Portugal</p><div class="panel"><img src="crops/pt-d-hero.jpg"></div></div>
+</div>
+
+<div class="rowlbl"><b>Evolução</b><span>Sete embalagens no Brasil; seis em Portugal, sem o marco de 2024.</span></div>
+<div class="cols">
+  <div><p class="pl">Brasil</p><div class="panel"><img src="crops/br-d-evo.jpg"></div></div>
+  <div><p class="pl">Portugal</p><div class="panel"><img src="crops/pt-d-evo.jpg"></div></div>
+</div>
+
+<div class="rowlbl"><b>Embalagens</b><span>Suave, Clássico e Reserva no Brasil; Delicado, Clássico e Reserva em Portugal.</span></div>
+<div class="cols">
+  <div><p class="pl">Brasil</p><div class="panel"><img src="crops/br-d-emb.jpg"></div></div>
+  <div><p class="pl">Portugal</p><div class="panel"><img src="crops/pt-d-emb.jpg"></div></div>
+</div>
+</div></body></html>

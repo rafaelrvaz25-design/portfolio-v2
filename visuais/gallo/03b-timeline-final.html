@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css">
+<style>
+.row{display:grid;grid-template-columns:1fr 360px;gap:30px}
+.panel{padding:18px;display:flex;align-items:center;justify-content:center}
+.wrap{position:relative;width:100%}
+.wrap img{width:100%;border-radius:6px}
+.mob .wrap{width:300px}
+.mob .wrap img{border-radius:18px;border:1px solid #e4e4e4}
+.legend{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:6px}
+.k{position:absolute;top:30px;left:30px}
+body.m .row{grid-template-columns:1fr;gap:30px}
+body.m .mob .wrap{width:420px}
+body.m .legend{grid-template-columns:1fr;gap:4px}
+body.m .num.mark{width:56px;height:56px;font-size:28px}
+</style></head><body><div id="fig">
+<div class="row">
+  <div class="panel"><div class="wrap"><img src="crops/br-d-evo.jpg">
+    <span class="num mark" style="left:25.5%;top:31%">1</span>
+    <span class="num mark" style="left:71%;top:51%">2</span>
+    <span class="num mark" style="left:46.5%;top:71%">3</span></div></div>
+  <div class="panel mob"><div class="wrap"><img src="crops/br-m-evo.jpg">
+    <span class="num mark" style="left:50%;top:77%">4</span></div></div>
+</div>
+<div class="legend">
+  <div class="cap"><h4><span class="num">1</span>Uma garrafa em destaque</h4><p class="indent">A embalagem escolhida aparece em grande, sobre o sol, com o ano.</p></div>
+  <div class="cap"><h4><span class="num">2</span>Todas à vista</h4><p class="indent">As sete gerações na mesma base, sem scroll horizontal nem scroll preso.</p></div>
+  <div class="cap"><h4><span class="num">3</span>De 2026 a 1919</h4><p class="indent">A ordem invertida, pedida pelo cliente, começa pela nova garrafa.</p></div>
+  <div class="cap"><h4><span class="num">4</span>Também em mobile</h4><p class="indent">A linha completa cabe no ecrã, sem deslizar para o lado.</p></div>
+</div>
+</div></body></html>

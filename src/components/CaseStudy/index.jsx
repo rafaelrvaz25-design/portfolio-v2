@@ -60,13 +60,18 @@ export default function CaseStudy({ project, study, number, next }) {
               </span>
             ))}
           </h1>
+          {study.lead && <p className={styles.lead}>{study.lead}</p>}
           <Facts items={study.facts} />
         </div>
       </section>
 
       <div className={styles.cover}>
         <div className={styles.coverFrame} style={{ backgroundColor: project.color }}>
-          <Placeholder label={`Capa · ${project.title}`} color="transparent" />
+          {project.cover ? (
+            <img className={styles.coverImage} src={url(project.cover)} alt={`Capa · ${project.title}`} decoding="async" />
+          ) : (
+            <Placeholder label={`Capa · ${project.title}`} color="transparent" />
+          )}
         </div>
       </div>
 
