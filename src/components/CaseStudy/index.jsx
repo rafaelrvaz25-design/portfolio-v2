@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import styles from './style.module.scss';
 import Placeholder from '../../common/Placeholder';
 import Button from '../../common/Button';
+import Facts from './Facts';
 
 // Sem animações de entrada no scroll: o texto e as imagens estão sempre lá quando se chega a eles.
 const reveal = {};
@@ -59,14 +60,7 @@ export default function CaseStudy({ project, study, number, next }) {
               </span>
             ))}
           </h1>
-          <dl className={styles.facts}>
-            {study.facts.map((f) => (
-              <div key={f.label}>
-                <dt>{f.label}</dt>
-                <dd className={f.pending ? styles.pending : undefined}>{f.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <Facts items={study.facts} />
         </div>
       </section>
 

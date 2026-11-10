@@ -78,6 +78,19 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
     line-height: 1.5;
   }
 }
+/* Ficha compacta (componente Facts): até 5 campos numa linha, cada um com a largura do seu valor.
+   Quando falta espaço, os valores curtos ficam inteiros e só os longos quebram, de forma equilibrada. */
+.factsCompact {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(min-content, max-content);
+  justify-content: start;
+  column-gap: clamp(40px, 5vw, 96px);
+  dd {
+    max-width: 28ch;
+    text-wrap: balance;
+  }
+}
 .pending {
   color: #f0c36a;
 }
@@ -317,6 +330,8 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
   .hero { padding: 120px 20px 60px; }
   .back { margin-bottom: 40px; }
   .facts { margin-top: 50px; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .factsCompact { grid-auto-flow: row; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .factsCompact dd { max-width: none; }
   .cover { padding: 0 20px; }
   .impact { margin-top: 80px; padding: 0 20px; }
   .section { padding: 0 20px; margin-top: 80px; }
