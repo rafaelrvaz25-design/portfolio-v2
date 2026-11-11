@@ -53,14 +53,21 @@ export default function CaseStudy({ project, study, number, next }) {
         <div className={styles.heroInner}>
           <Link href="/#projetos" className={styles.back}>← Todos os projetos</Link>
           <p className={styles.kicker}>{number} · {project.tag}</p>
-          <h1>
+          <h1 aria-label={study.headline}>
             {words.map((word, i) => (
-              <span key={i} className={styles.mask}>
+              <span key={i} className={styles.mask} aria-hidden="true">
                 <motion.span variants={slideUp} custom={i} initial="initial" animate="enter">{word}</motion.span>
               </span>
             ))}
           </h1>
           {study.lead && <p className={styles.lead}>{study.lead}</p>}
+          <p className={styles.readTime}>
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" focusable="false">
+              <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" strokeWidth="1.3" />
+              <path d="M8 4.5V8l2.4 1.6" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+            </svg>
+            {study.readMinutes} min de leitura
+          </p>
           <Facts items={study.facts} />
         </div>
       </section>
@@ -68,7 +75,7 @@ export default function CaseStudy({ project, study, number, next }) {
       <div className={styles.cover}>
         <div className={styles.coverFrame} style={{ backgroundColor: project.color }}>
           {project.cover ? (
-            <img className={styles.coverImage} src={url(project.cover)} alt={`Capa · ${project.title}`} decoding="async" />
+            <img className={styles.coverImage} src={url(project.cover)} alt="" decoding="async" />
           ) : (
             <Placeholder label={`Capa · ${project.title}`} color="transparent" />
           )}

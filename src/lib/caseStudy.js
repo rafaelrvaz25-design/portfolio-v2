@@ -93,15 +93,19 @@ export function loadCaseStudy(file) {
     .filter((s) => !HIDDEN_SECTIONS.includes(s.title))
     .map((s) => ({ title: s.title, blocks: toBlocks(s.body) }));
 
-  // Tempo de leitura: palavras do texto visível (título, descrição e secções), a 200 palavras por minuto.
-  const plain = [headline, leadLines.join(' '), ...sections.filter((s) => !HIDDEN_SECTIONS.includes(s.title)).flatMap((s) => [s.title, ...s.body])]
+  // Tempo de leitura, calculado no build a partir do conteúdo editorial visível:
+  // título, descrição do hero, títulos e texto das secções e números dos blocos :::stats.
+  // Não contam: legendas e texto alternativo das figuras, metadados, navegação e secções escondidas.
+  // 215 palavras por minuto + 8 s por figura, para a observação dos visuais.
+  const visibleSections = sections.filter((s) => !HIDDEN_SECTIONS.includes(s.title));
+  const bodyLines = visibleSections.flatMap((s) => s.body);
+  const figures = bodyLines.filter((l) => /^!\[/.test(l.trim())).length;
+  const plain = [headline, leadLines.join(' '), ...visibleSections.map((s) => s.title), ...bodyLines.filter((l) => !/^!\[/.test(l.trim()) && !l.trim().startsWith(':::'))]
     .join(' ')
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')   // figuras
-    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // links: fica o texto
-    .replace(/[#*_>`:|-]/g, ' ');
-  const words = plain.split(/\s+/).filter((w) => /\p{L}/u.test(w)).length;
-  const readMinutes = Math.max(1, Math.round(words / 200));
-  facts.push({ label: 'Leitura', value: `${readMinutes} min` });
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // links: conta o texto, não o endereço
+    .replace(/[#*_>`|]/g, ' ');
+  const words = plain.split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
+  const readMinutes = Math.max(1, Math.round(words / 215 + (figures * 8) / 60));
 
   const impact = facts.find((f) => f.label === 'Impacto');
   return {
@@ -113,6 +117,8 @@ export function loadCaseStudy(file) {
       pending: /por confirmar/i.test(f.value),
     })),
     impact: impact ? impact.value.charAt(0).toUpperCase() + impact.value.slice(1) : '',
+    readMinutes,
+    readStats: { words, figures },
     sections: visible,
   };
 }

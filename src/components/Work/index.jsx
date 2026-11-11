@@ -48,7 +48,7 @@ function Title({ project, index, pos, mode }) {
         <Link href={`/projetos/${project.slug}`} className={styles.titleLink}>
           <h3 className={`display ${styles.title}`}>{project.title}</h3>
           <span className={styles.meta}>
-            {[project.tag, project.client, project.year].filter(Boolean).join(' · ')}
+            {[project.tag, project.client].filter(Boolean).join(' · ')}
             <span className={styles.cta}>Ver case study →</span>
           </span>
         </Link>
@@ -222,7 +222,7 @@ function Stage() {
     <div ref={section} className={styles.track} style={{ height: `${(n + 0.5) * 100}vh` }}>
       <div className={styles.stage}>
         <div className={styles.stageHead}>
-          <span className="label">Projetos selecionados</span>
+          <h2 className="label">Projetos selecionados</h2>
           <span className="label">({pad(n - 1)})</span>
         </div>
 
@@ -273,7 +273,7 @@ function List() {
   return (
     <div className={styles.list}>
       <div className={styles.listHead}>
-        <span className="label">Projetos selecionados</span>
+        <h2 className="label">Projetos selecionados</h2>
         <span className="label">({pad(n - 1)})</span>
       </div>
       {projects.map((p, i) => (

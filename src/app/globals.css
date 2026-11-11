@@ -66,6 +66,9 @@ a { color: inherit; }
   line-height: 0.92;
 }
 
+/* rótulos que também são títulos de secção (h2) para a hierarquia de headings */
+h2.label { margin: 0; font-weight: inherit; }
+
 .label {
   font-size: 12px;
   letter-spacing: 0.1em;

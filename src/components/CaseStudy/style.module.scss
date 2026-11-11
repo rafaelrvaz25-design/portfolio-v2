@@ -96,6 +96,17 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 /* Descrição curta por baixo do título (opcional: texto entre o título e a ficha no markdown). */
+.readTime {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 28px 0 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6); // 6.9:1 no fundo escuro; menos destaque que os metadados
+  font-variant-numeric: tabular-nums;
+  svg { flex: none; }
+}
+
 .lead {
   margin: 32px 0 0;
   max-width: 720px;
