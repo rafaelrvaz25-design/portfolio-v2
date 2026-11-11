@@ -6,10 +6,12 @@ import styles from './style.module.scss';
 const EASE = [0.76, 0, 0.24, 1];
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-// Área de trabalho em destaque no hero. Vai mudando sozinha; o fundo verde acompanha
-// a largura de cada palavra. Pára fora do ecrã, com a página escondida, com o rato ou o
-// foco em cima, e com "reduzir movimento" fica fixa na primeira área.
-export default function RotatingArea({ areas, interval = 2400, startDelay = 1800 }) {
+// Área de trabalho em destaque no hero. A primeira área é a de repouso: depois de
+// carregar, passa uma vez pelas outras e volta a ela, onde fica (assim nada se mexe mais
+// do que uns segundos, WCAG 2.2.2). O fundo verde acompanha a largura de cada palavra.
+// Pausa fora do ecrã, com a página escondida e com o rato em cima; com "reduzir
+// movimento" fica fixa na primeira área.
+export default function RotatingArea({ areas, interval = 2400, startDelay = 3000 }) {
   const reduce = useReducedMotion();
   const [i, setI] = useState(0);
   const [widths, setWidths] = useState([]);
@@ -37,13 +39,18 @@ export default function RotatingArea({ areas, interval = 2400, startDelay = 1800
     return () => { io.disconnect(); document.removeEventListener('visibilitychange', onVis); };
   }, []);
 
-  const running = !reduce && !paused && visible && areas.length > 1;
+  const [done, setDone] = useState(false); // já deu a volta e voltou à primeira área
+  const running = !reduce && !paused && visible && !done && areas.length > 1;
   const first = useRef(true);
   useEffect(() => {
     if (!running) return undefined;
     const wait = first.current ? startDelay : interval;
     first.current = false;
-    const t = setTimeout(() => setI((n) => (n + 1) % areas.length), wait);
+    const t = setTimeout(() => {
+      const next = (i + 1) % areas.length;
+      setI(next);
+      if (next === 0) setDone(true);
+    }, wait);
     return () => clearTimeout(t);
   }, [running, i, areas.length, interval, startDelay]);
 
@@ -55,14 +62,9 @@ export default function RotatingArea({ areas, interval = 2400, startDelay = 1800
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <motion.span
-        ref={box}
-        className={styles.area}
-        initial={false}
-        style={reduce && w ? { width: w } : undefined}
-        animate={!reduce && w ? { width: w } : undefined}
-        transition={{ duration: 0.55, ease: EASE }}
-      >
+      {/* a largura vai por CSS (com transição): aplica-se logo no primeiro desenho,
+          mesmo enquanto o título ainda está a entrar */}
+      <span ref={box} className={styles.area} style={w ? { width: w } : undefined}>
         <AnimatePresence initial={false} mode="popLayout">
           <motion.span
             key={areas[i]}
@@ -75,7 +77,7 @@ export default function RotatingArea({ areas, interval = 2400, startDelay = 1800
             {areas[i]}
           </motion.span>
         </AnimatePresence>
-      </motion.span>
+      </span>
       {/* medidas: invisíveis, com o mesmo tipo de letra e espaçamento */}
       <span className={styles.areaSizers} aria-hidden="true">
         {areas.map((a, k) => (

@@ -53,6 +53,9 @@
   padding: 0.06em 0.12em 0.04em;
   background: var(--action);
   color: var(--on-action);
+  transition: width 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
 }
 
 .areaWord {

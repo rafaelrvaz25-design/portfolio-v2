@@ -6,8 +6,8 @@ import styles from './style.module.scss';
 import LogoMaterial3D from '../LogoMaterial3D';
 import RotatingArea from './RotatingArea';
 
-// Áreas em que o Rafa trabalha, uma por case study. A primeira é a que fica fixa
-// com "reduzir movimento".
+// Áreas em que o Rafa trabalha, uma por case study. A primeira (Design Systems) é a de
+// repouso: o hero abre e acaba nela.
 const AREAS = ['Design Systems', 'Acessibilidade', 'Self-checkout', 'Landing pages'];
 
 export default function Hero() {
