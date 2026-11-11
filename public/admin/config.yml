@@ -119,7 +119,9 @@ collections:
             name: blocos
             widget: list
             label_singular: bloco
-            collapsed: true
+            # Ao abrir uma secção, os blocos aparecem logo abertos: corrigir uma palavra
+            # não exige abrir mais nada.
+            collapsed: false
             typeKey: tipo
             types:
               - label: Texto

@@ -11,6 +11,7 @@ import fs from 'fs';
 import path from 'path';
 import assert from 'assert';
 import YAML from 'yaml';
+import YAMLDecap from 'yaml-decap';
 import { projects } from '../src/data/projects.js';
 import { parseCaseStudy } from '../src/lib/caseStudy.js';
 import { projectToMarkdown, FICHA } from '../src/lib/content.js';
@@ -114,11 +115,12 @@ const secoes = sections.map(({ titulo, body }) => {
   return s;
 });
 
+// Pela ordem dos campos do backoffice (public/admin/config.yml), a mesma em que o Decap grava.
 const data = {
-  slug: entry.slug,
   visibilidade: 'publico',
-  ordem: (projects.indexOf(entry) + 1) * 10,
   titulo: entry.title,
+  slug: entry.slug,
+  ordem: (projects.indexOf(entry) + 1) * 10,
   categoria: entry.tag,
   titulo_pagina: headline,
   ...(lead.length ? { descricao: lead.join('\n') } : {}),
@@ -144,8 +146,9 @@ console.log(`OK: ${secoes.length} secções, ${figuras} figuras, ${before.readMi
 if (!onlyCheck) {
   const out = path.join(root, 'content', 'projetos', `${entry.slug}.yml`);
   fs.mkdirSync(path.dirname(out), { recursive: true });
-  const doc = new YAML.Document(data);
-  fs.writeFileSync(out, doc.toString({ lineWidth: 0, blockQuote: 'literal' }));
+  // Escrito exatamente como o Decap CMS o grava (biblioteca yaml 1.10.2, opções por omissão):
+  // assim, a primeira edição no backoffice só mostra no diff o que foi mudado.
+  fs.writeFileSync(out, YAMLDecap.stringify(data));
   // O ficheiro escrito tem de voltar a dar o mesmo resultado.
   const reread = YAML.parse(fs.readFileSync(out, 'utf8'));
   assert.deepStrictEqual(noSlash(parseCaseStudy(projectToMarkdown(reread))), before);
