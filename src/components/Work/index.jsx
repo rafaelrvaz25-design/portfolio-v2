@@ -57,7 +57,7 @@ function Stage() {
   const { scrollYProgress, scrollY } = useScroll({ target: section, offset: ['start start', 'end end'] });
   // A secção tem n + 0,5 ecrãs: cada projeto ocupa um ecrã de scroll e o último fica meio ecrã parado.
   const hold = n > 1 ? (n - 1) / (n - 0.5) : 1;
-  const pos = useSpring(useTransform(scrollYProgress, [0, hold], [0, n - 1], { clamp: true }), { stiffness: 120, damping: 24, mass: 0.6 });
+  const pos = useSpring(useTransform(scrollYProgress, [0, hold], [0, n - 1], { clamp: true }), { stiffness: 260, damping: 32, mass: 0.5 });
 
   // Inclinação ligeira que acompanha a velocidade do scroll.
   const velocity = useVelocity(scrollY);
@@ -72,10 +72,19 @@ function Stage() {
 
   useEffect(() => pos.on('change', (v) => setActive(Math.min(n - 1, Math.max(0, Math.round(v))))), [pos]);
 
+  // Ir direto a um projeto (clique na vista geral): as paragens pelo caminho ficam desligadas
+  // até chegar, senão o salto do primeiro para o último parava no segundo.
   const goTo = (i) => {
     const el = section.current;
     const top = el.getBoundingClientRect().top + window.scrollY;
-    scrollToY(top + i * window.innerHeight);
+    const target = top + i * window.innerHeight;
+    const screens = Math.abs(target - window.scrollY) / window.innerHeight;
+    const duration = Math.min(1, 0.45 + screens * 0.15);
+    clearTimeout(window.__navTimer);
+    window.__navigating = true;
+    const done = () => { clearTimeout(window.__navTimer); window.__navTimer = setTimeout(() => { window.__navigating = false; }, 150); };
+    scrollToY(target, { duration, lock: true, onComplete: done });
+    window.__navTimer = setTimeout(() => { window.__navigating = false; }, duration * 1000 + 600); // segurança
   };
 
   // Paragens: quando o scroll pára dentro do palco, encaixa num projeto.
@@ -124,7 +133,7 @@ function Stage() {
         target = S[next];
       }
 
-      if (target !== null && Math.abs(target - y) > eps) snapTo(target, 0.9);
+      if (target !== null && Math.abs(target - y) > eps) snapTo(target, 0.5);
     };
 
     const snapTo = (target, duration) => {
@@ -132,7 +141,7 @@ function Stage() {
       clearTimeout(timer);
       const done = () => { snapping = false; idle = true; };
       scrollToY(target, { duration, lock: true, onComplete: done });
-      setTimeout(done, duration * 1000 + 400); // segurança, caso o onComplete não chegue
+      setTimeout(done, duration * 1000 + 250); // segurança, caso o onComplete não chegue
     };
 
     // o scroll suave acaba devagar (meio píxel de cada vez): esses restos não contam como movimento
@@ -152,14 +161,14 @@ function Stage() {
           ? S.filter((s) => s > y0 + eps && s < y - eps)
           : S.filter((s) => s < y0 - eps && s > y + eps);
         if (crossed.length) {
-          snapTo(y > y0 ? crossed[0] : crossed[crossed.length - 1], 0.6);
+          snapTo(y > y0 ? crossed[0] : crossed[crossed.length - 1], 0.4);
           return;
         }
       }
 
       if (delta < 2) return;
       clearTimeout(timer);
-      timer = setTimeout(settle, 140);
+      timer = setTimeout(settle, 90);
     };
 
     window.addEventListener('scroll', onScroll, { passive: true });
