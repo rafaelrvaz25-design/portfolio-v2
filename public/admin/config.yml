@@ -9,6 +9,13 @@ backend:
   name: github
   repo: rafaelrvaz25-design/portfolio-v2
   branch: cms-poc
+  # Mensagens dos commits em português, para o histórico do GitHub ser legível.
+  commit_messages:
+    create: "Cria projeto «{{slug}}» (backoffice)"
+    update: "Atualiza projeto «{{slug}}» (backoffice)"
+    delete: "Apaga projeto «{{slug}}» (backoffice)"
+    uploadMedia: "Carrega imagem {{path}} (backoffice)"
+    deleteMedia: "Apaga imagem {{path}} (backoffice)"
 
 # Guardar e publicar são passos separados: cada edição fica num rascunho editorial
 # até carregar em Publicar.
