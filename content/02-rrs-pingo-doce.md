@@ -4,9 +4,8 @@
 
 ### Ficha rápida
 - **Cliente:** Pingo Doce
-- **Papel:** UX/UI Designer
-- **Duração:** 2 semanas
-- **Equipa:** 1 designer e 2 developers
+- **O meu papel:** UX/UI Designer
+- **Setor:** Retalho
 
 ---
 

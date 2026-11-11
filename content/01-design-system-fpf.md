@@ -4,10 +4,8 @@
 
 ### Ficha rápida
 - **Cliente:** Federação Portuguesa de Futebol
-- **Papel:** UX/UI Designer na Monday
-- **Ano:** 2023 a 2024
-- **Duração:** 6 meses + 12 de manutenção
-- **Equipa:** 2 designers, 1 Design Lead e 1 PM
+- **O meu papel:** UX/UI Designer na Monday
+- **Setor:** Desporto
 
 ---
 

@@ -93,6 +93,16 @@ export function loadCaseStudy(file) {
     .filter((s) => !HIDDEN_SECTIONS.includes(s.title))
     .map((s) => ({ title: s.title, blocks: toBlocks(s.body) }));
 
+  // Tempo de leitura: palavras do texto visível (título, descrição e secções), a 200 palavras por minuto.
+  const plain = [headline, leadLines.join(' '), ...sections.filter((s) => !HIDDEN_SECTIONS.includes(s.title)).flatMap((s) => [s.title, ...s.body])]
+    .join(' ')
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')   // figuras
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // links: fica o texto
+    .replace(/[#*_>`:|-]/g, ' ');
+  const words = plain.split(/\s+/).filter((w) => /\p{L}/u.test(w)).length;
+  const readMinutes = Math.max(1, Math.round(words / 200));
+  facts.push({ label: 'Leitura', value: `${readMinutes} min` });
+
   const impact = facts.find((f) => f.label === 'Impacto');
   return {
     headline,

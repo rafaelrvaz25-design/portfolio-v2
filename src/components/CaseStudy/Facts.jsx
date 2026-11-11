@@ -1,9 +1,9 @@
 import styles from './style.module.scss';
 
 // Ficha do topo dos case studies.
-// Padrão: Cliente, Papel e Ano; Tipo, Duração e Equipa só quando acrescentam alguma coisa.
-// Os campos aparecem sempre por esta ordem e só se existirem na "Ficha rápida" do markdown.
-export const FACT_FIELDS = ['Cliente', 'Papel', 'Tipo', 'Ano', 'Duração', 'Equipa'];
+// Todos os case studies têm os mesmos quatro campos (pedido do Rafa, 11 nov):
+// Cliente, O meu papel e Setor vêm da "Ficha rápida" do markdown; Leitura é calculada a partir do texto.
+export const FACT_FIELDS = ['Cliente', 'O meu papel', 'Setor', 'Leitura'];
 const MAX_COMPACT = 5;
 
 export default function Facts({ items = [] }) {

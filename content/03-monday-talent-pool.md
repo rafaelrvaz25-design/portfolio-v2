@@ -4,8 +4,8 @@
 
 ### Ficha rápida
 - **Cliente:** Monday
-- **Papel:** UX/UI Designer
-- **Ano:** 2026
+- **O meu papel:** UX/UI Designer
+- **Setor:** Recursos humanos
 
 ---
 

@@ -6,9 +6,8 @@ Design de uma landing page para apresentar a nova identidade e embalagem da Gall
 
 ### Ficha rápida
 - **Cliente:** Gallo
-- **Papel:** UX/UI Designer
-- **Tipo:** Landing Page
-- **Ano:** 2026
+- **O meu papel:** UX/UI Designer
+- **Setor:** Alimentação
 
 ---
 
