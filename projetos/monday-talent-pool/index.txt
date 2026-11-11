@@ -1,11 +1,11 @@
 1:HL["/portfolio-v2/_next/static/css/2e26d21bf0f32599.css",{"as":"style"}]
-0:["SddsthjKbl1LdEPebBy2T",[[["",{"children":["projetos",{"children":[["slug","monday-talent-pool","d"],{"children":["__PAGE__?{\"slug\":\"monday-talent-pool\"}",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/portfolio-v2/_next/static/css/2e26d21bf0f32599.css","precedence":"next"}]],"$L3"]]]]
+0:["qkJuYjbyxd-2bkJ386Vm6",[[["",{"children":["projetos",{"children":[["slug","monday-talent-pool","d"],{"children":["__PAGE__?{\"slug\":\"monday-talent-pool\"}",{}]}]}]},"$undefined","$undefined",true],"$L2",[[["$","link","0",{"rel":"stylesheet","href":"/portfolio-v2/_next/static/css/2e26d21bf0f32599.css","precedence":"next"}]],"$L3"]]]]
 4:HL["/portfolio-v2/_next/static/css/b25cb54332296c83.css",{"as":"style"}]
 5:I{"id":2245,"chunks":["224:static/chunks/f31a4964-44b596b9ecf9e13e.js","994:static/chunks/994-12dfdf4ebb7f3f0f.js","114:static/chunks/114-ad0f2d25085b0071.js","402:static/chunks/402-7139be8880435180.js","185:static/chunks/app/layout-3f080677fa13ff08.js"],"name":"","async":false}
 6:I{"id":6518,"chunks":["224:static/chunks/f31a4964-44b596b9ecf9e13e.js","994:static/chunks/994-12dfdf4ebb7f3f0f.js","114:static/chunks/114-ad0f2d25085b0071.js","402:static/chunks/402-7139be8880435180.js","185:static/chunks/app/layout-3f080677fa13ff08.js"],"name":"","async":false}
-7:I{"id":3466,"chunks":["272:static/chunks/webpack-ec96292b54e8bbe5.js","253:static/chunks/bce60fc1-514c7bc027a462db.js","961:static/chunks/961-44b72f8256d5a67a.js"],"name":"default","async":false}
+7:I{"id":3466,"chunks":["272:static/chunks/webpack-8894e9d26cf4e93d.js","253:static/chunks/bce60fc1-514c7bc027a462db.js","961:static/chunks/961-44b72f8256d5a67a.js"],"name":"default","async":false}
 8:I{"id":3714,"chunks":["994:static/chunks/994-12dfdf4ebb7f3f0f.js","489:static/chunks/app/template-006cc237737122f7.js"],"name":"","async":false}
-9:I{"id":372,"chunks":["272:static/chunks/webpack-ec96292b54e8bbe5.js","253:static/chunks/bce60fc1-514c7bc027a462db.js","961:static/chunks/961-44b72f8256d5a67a.js"],"name":"default","async":false}
+9:I{"id":372,"chunks":["272:static/chunks/webpack-8894e9d26cf4e93d.js","253:static/chunks/bce60fc1-514c7bc027a462db.js","961:static/chunks/961-44b72f8256d5a67a.js"],"name":"default","async":false}
 a:I{"id":7803,"chunks":["224:static/chunks/f31a4964-44b596b9ecf9e13e.js","994:static/chunks/994-12dfdf4ebb7f3f0f.js","114:static/chunks/114-ad0f2d25085b0071.js","647:static/chunks/app/projetos/[slug]/page-647cc437d40aaeb0.js"],"name":"","async":false}
 b:T467,<h3>Uma página funcional que ainda não parecia da Monday.</h3>
 <p>A Talent Pool é a ferramenta interna onde a Monday guarda os CVs que recebe, os pesquisa por competência e mantém o contacto com as pessoas ao longo do tempo.</p>
