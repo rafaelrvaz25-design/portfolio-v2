@@ -18,9 +18,9 @@ const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 const url = (src) => `${BASE}/${src.replace(/^\//, '')}`;
 
-function Figure({ caption, color, src, srcMobile }) {
+function Figure({ caption, alt, color, src, srcMobile }) {
   if (src) {
-    const img = <img className={styles.image} src={url(src)} alt={caption} loading="lazy" decoding="async" />;
+    const img = <img className={styles.image} src={url(src)} alt={alt || caption} loading="lazy" decoding="async" />;
     return (
       <motion.figure className={styles.figure} {...reveal}>
         {srcMobile ? (
@@ -52,7 +52,7 @@ export default function CaseStudy({ project, study, number, next }) {
       <section className={styles.hero}>
         <div className={styles.heroInner}>
           <Link href="/#projetos" className={styles.back}>← Todos os projetos</Link>
-          <p className={styles.kicker}>{number} · {project.tag}</p>
+          <p className={styles.kicker}>{number ? <>{number} · {project.tag}</> : project.tag}</p>
           <h1 aria-label={study.headline}>
             {words.map((word, i) => (
               <span key={i} className={styles.mask} aria-hidden="true">
@@ -104,7 +104,7 @@ export default function CaseStudy({ project, study, number, next }) {
             </motion.div>
             {after.map((block, j) =>
               block.type === 'figure' ? (
-                <Figure key={j} caption={block.caption} src={block.src} srcMobile={block.srcMobile} />
+                <Figure key={j} caption={block.caption} alt={block.alt} src={block.src} srcMobile={block.srcMobile} />
               ) : (
                 <motion.div key={j} className={`${styles.sectionGrid} ${styles.continued}`} {...reveal}>
                   <div aria-hidden="true" />

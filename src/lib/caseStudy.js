@@ -59,6 +59,12 @@ function toBlocks(lines) {
 
 export function loadCaseStudy(file) {
   const raw = fs.readFileSync(path.join(process.cwd(), 'content', file), 'utf8');
+  return parseCaseStudy(raw);
+}
+
+// Interpreta o texto de um case study (o Markdown de /content, ou o que o adaptador
+// de conteúdos YAML gera a partir de content/projetos/*.yml, em src/lib/content.js).
+export function parseCaseStudy(raw) {
   const lines = raw.split('\n');
 
   let headline = '';

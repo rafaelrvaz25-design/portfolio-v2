@@ -4,7 +4,6 @@ import Link from 'next/link';
 import {
   motion, useScroll, useSpring, useTransform, useVelocity, useMotionValue, animate,
 } from 'framer-motion';
-import { projects } from '../../data/projects';
 import Placeholder from '../../common/Placeholder';
 import { FadeUp } from '../../common/Reveal';
 import { scrollToY } from '../SmoothScroll';
@@ -28,14 +27,14 @@ function Cover({ project, lazy }) {
   );
 }
 
-const n = projects.length;
+// A lista de projetos (só os públicos) chega por props a partir de app/page.js.
 const pad = (i) => String(i + 1).padStart(2, '0');
 const lerp = (a, b, t) => a + (b - a) * t;
 
 /* ---------- Título de um projeto (desktop) ---------- */
 // Cada título lê a mesma posição que move os cartões: nunca fica desfasado nem desaparece,
 // por mais brusco que seja o scroll. Só um está visível e clicável de cada vez.
-function Title({ project, index, pos, mode }) {
+function Title({ project, index, pos, mode, n }) {
   const d = useTransform(pos, (p) => index - p);
   const opacity = useTransform([d, mode], ([v, m]) => Math.max(0, 1 - Math.abs(v) * 2.2) * (1 - m));
   const y = useTransform(d, (v) => Math.max(-1, Math.min(1, v)) * 36);
@@ -82,7 +81,8 @@ function Card({ project, index, pos, mode, tilt, vh, hover }) {
 }
 
 /* ---------- Palco fixo com scroll entre projetos (desktop) ---------- */
-function Stage() {
+function Stage({ projects }) {
+  const n = projects.length;
   const section = useRef(null);
   const [vh, setVh] = useState(900);
   const [active, setActive] = useState(0);
@@ -235,7 +235,7 @@ function Stage() {
         {/* Título do projeto ativo */}
         <div className={styles.info}>
           {projects.map((p, i) => (
-            <Title key={p.slug} project={p} index={i} pos={pos} mode={mode} />
+            <Title key={p.slug} project={p} index={i} pos={pos} mode={mode} n={n} />
           ))}
         </div>
 
@@ -269,7 +269,8 @@ function Stage() {
 }
 
 /* ---------- Lista simples (telemóvel e tablet) ---------- */
-function List() {
+function List({ projects }) {
+  const n = projects.length;
   return (
     <div className={styles.list}>
       <div className={styles.listHead}>
@@ -292,11 +293,11 @@ function List() {
   );
 }
 
-export default function Work() {
+export default function Work({ projects }) {
   return (
     <section id="projetos" className={styles.work}>
-      <div className={styles.desktop}><Stage /></div>
-      <div className={styles.mobile}><List /></div>
+      <div className={styles.desktop}><Stage projects={projects} /></div>
+      <div className={styles.mobile}><List projects={projects} /></div>
     </section>
   );
 }
