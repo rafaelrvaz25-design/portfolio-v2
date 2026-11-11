@@ -1,0 +1,155 @@
+# Backoffice do portefólio (Decap CMS) · prova de conceito, só local.
+# Ver docs/cms-poc.md para abrir e experimentar.
+#
+# local_backend: com `npx decap-server` a correr, o Decap grava no disco deste computador
+# em vez de no GitHub, e não pede login. Na Fase 2 isto sai e entra o login real.
+local_backend: true
+
+backend:
+  name: github
+  repo: rafaelrvaz25-design/portfolio-v2
+  branch: cms-poc
+
+# Guardar e publicar são passos separados: cada edição fica num rascunho editorial
+# até carregar em Publicar.
+publish_mode: editorial_workflow
+
+locale: pt
+site_url: http://localhost:4000
+display_url: https://rafastuff.github.io
+
+# Imagens novas: public/images/uploads/ (as existentes ficam onde estão, com o mesmo URL).
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: projetos
+    label: Projetos
+    label_singular: Projeto
+    description: >-
+      Case studies do portefólio. Só os projetos «Público» aparecem na homepage. Os textos
+      usam Markdown: **negrito**, listas com «- » e links [texto](endereço).
+    folder: content/projetos
+    extension: yml
+    format: yml
+    create: true
+    # Apagar um projeto publicado pode ir direto para o site sem passar por Publicar.
+    # Para tirar um projeto do site, mudar a visibilidade para Rascunho ou Arquivado.
+    delete: false
+    slug: "{{fields.slug}}"
+    identifier_field: titulo
+    summary: "{{ordem}} · {{titulo}} · {{visibilidade}}"
+    sortable_fields: [ordem, titulo, visibilidade]
+    view_groups:
+      - label: Visibilidade
+        field: visibilidade
+    preview_path: "projetos/{{fields.slug}}/"
+    fields:
+      - label: Visibilidade
+        name: visibilidade
+        widget: select
+        default: rascunho
+        options:
+          - { label: "Público: homepage, listagens e motores de pesquisa", value: publico }
+          - { label: "Não listado: só por link direto, sem indexação", value: nao_listado }
+          - { label: "Rascunho: não é publicado", value: rascunho }
+          - { label: "Arquivado: não é publicado, fica guardado", value: arquivado }
+      - label: Título do projeto
+        name: titulo
+        widget: string
+        hint: Nome curto, usado nos cartões da homepage e no «Próximo projeto». Ex.: Gallo
+      - label: Endereço (slug)
+        name: slug
+        widget: string
+        pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Só letras minúsculas sem acentos, números e hífenes. Ex.: rrs-pingo-doce']
+        hint: Fica em rafastuff.github.io/projetos/<slug>/. Não mudar depois de publicado, para não partir links.
+      - label: Ordem
+        name: ordem
+        widget: number
+        value_type: int
+        default: 100
+        hint: Ordem na homepage, do menor para o maior. Usar 10, 20, 30… (25 fica entre 20 e 30).
+      - label: Categoria
+        name: categoria
+        widget: string
+        hint: Aparece nos cartões e no topo do case study. Ex.: Landing page
+      - label: Título da página
+        name: titulo_pagina
+        widget: string
+        hint: O título grande no topo do case study.
+      - label: Descrição curta
+        name: descricao
+        widget: text
+        required: false
+        hint: Opcional. Aparece por baixo do título da página.
+      - label: Ano
+        name: ano
+        widget: string
+        required: false
+        hint: Opcional. Guardado para referência; hoje não aparece no site.
+      - label: Ficha
+        name: ficha
+        widget: object
+        collapsed: false
+        fields:
+          - { label: Papel, name: papel, widget: string }
+          - { label: Cliente, name: cliente, widget: string, hint: "Também aparece nos cartões da homepage." }
+          - { label: Setor, name: setor, widget: string }
+          - { label: Duração, name: duracao, widget: string, required: false }
+          - { label: Equipa, name: equipa, widget: string, required: false }
+          - { label: Impacto, name: impacto, widget: text, required: false, hint: "Opcional. Aparece num bloco próprio antes das secções." }
+      - label: Capa
+        name: capa
+        widget: object
+        collapsed: false
+        fields:
+          - { label: Imagem de capa (16:9), name: imagem, widget: image, choose_url: false }
+          - { label: Cor de fundo, name: cor_fundo, widget: color, hint: "Mostrada enquanto a capa carrega. Ex.: #e2c879" }
+      - label: Secções
+        name: secoes
+        widget: list
+        label_singular: secção
+        summary: "{{fields.titulo}}"
+        collapsed: true
+        min: 1
+        fields:
+          - { label: Título da secção, name: titulo, widget: string }
+          - { label: Subtítulo, name: subtitulo, widget: string, required: false, hint: "A frase em destaque no início da secção." }
+          - label: Blocos
+            name: blocos
+            widget: list
+            label_singular: bloco
+            collapsed: true
+            typeKey: tipo
+            types:
+              - label: Texto
+                name: texto
+                widget: object
+                summary: "{{fields.corpo | truncate(80, '…')}}"
+                fields:
+                  - label: Texto
+                    name: corpo
+                    widget: text
+                    hint: "Markdown: **negrito**, linha começada por «- » para listas, [texto](endereço) para links. Linha em branco separa parágrafos."
+              - label: Figura
+                name: figura
+                widget: object
+                summary: "{{fields.legenda | truncate(80, '…')}}"
+                fields:
+                  - { label: Imagem, name: imagem, widget: image, choose_url: false }
+                  - { label: Imagem para telemóvel, name: imagem_mobile, widget: image, choose_url: false, required: false, hint: "Opcional. Versão usada em ecrãs com menos de 900 px." }
+                  - { label: Legenda, name: legenda, widget: text, hint: "Aparece por baixo da imagem." }
+                  - { label: Texto alternativo, name: alt, widget: text, required: false, hint: "Opcional. Se ficar vazio, a legenda é usada como texto alternativo (como hoje)." }
+              - label: Números em destaque
+                name: numeros
+                widget: object
+                summary: "{{fields.itens}}"
+                fields:
+                  - label: Números
+                    name: itens
+                    widget: list
+                    label_singular: número
+                    summary: "{{fields.valor}} · {{fields.descricao}}"
+                    fields:
+                      - { label: Número, name: valor, widget: string, hint: "Ex.: 2 de 4, ~8, 12" }
+                      - { label: Descrição, name: descricao, widget: string, hint: "Pode ter **negrito**." }
