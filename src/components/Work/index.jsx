@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
-  motion, AnimatePresence, useScroll, useSpring, useTransform, useVelocity, useMotionValue, animate,
+  motion, useScroll, useSpring, useTransform, useVelocity, useMotionValue, animate,
 } from 'framer-motion';
 import { projects } from '../../data/projects';
 import Placeholder from '../../common/Placeholder';
@@ -13,6 +13,31 @@ import styles from './style.module.scss';
 const n = projects.length;
 const pad = (i) => String(i + 1).padStart(2, '0');
 const lerp = (a, b, t) => a + (b - a) * t;
+
+/* ---------- Título de um projeto (desktop) ---------- */
+// Cada título lê a mesma posição que move os cartões: nunca fica desfasado nem desaparece,
+// por mais brusco que seja o scroll. Só um está visível e clicável de cada vez.
+function Title({ project, index, pos, mode }) {
+  const d = useTransform(pos, (p) => index - p);
+  const opacity = useTransform([d, mode], ([v, m]) => Math.max(0, 1 - Math.abs(v) * 2.2) * (1 - m));
+  const y = useTransform(d, (v) => Math.max(-1, Math.min(1, v)) * 36);
+  const pointerEvents = useTransform(opacity, (o) => (o > 0.5 ? 'auto' : 'none'));
+  const visibility = useTransform(opacity, (o) => (o < 0.01 ? 'hidden' : 'visible'));
+  return (
+    <motion.div className={styles.titleItem} style={{ opacity, y, visibility }}>
+      <p className={styles.counter}>{pad(index)} / {pad(n - 1)}</p>
+      <motion.div style={{ pointerEvents }}>
+        <Link href={`/projetos/${project.slug}`} className={styles.titleLink}>
+          <h3 className={`display ${styles.title}`}>{project.title}</h3>
+          <span className={styles.meta}>
+            {[project.tag, project.client, project.year].filter(Boolean).join(' · ')}
+            <span className={styles.cta}>Ver case study →</span>
+          </span>
+        </Link>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 /* ---------- Um cartão do palco (desktop) ---------- */
 function Card({ project, index, pos, mode, tilt, vh, hover }) {
@@ -175,8 +200,6 @@ function Stage() {
     return () => { window.removeEventListener('scroll', onScroll); clearTimeout(timer); };
   }, []);
 
-  const project = projects[active];
-
   return (
     <div ref={section} className={styles.track} style={{ height: `${(n + 0.5) * 100}vh` }}>
       <div className={styles.stage}>
@@ -193,24 +216,9 @@ function Stage() {
 
         {/* Título do projeto ativo */}
         <div className={styles.info}>
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={project.slug}
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: overview ? 0 : 1 }}
-              exit={{ y: -30, opacity: 0 }}
-              transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
-            >
-              <p className={styles.counter}>{pad(active)} / {pad(n - 1)}</p>
-              <Link href={`/projetos/${project.slug}`} className={styles.titleLink}>
-                <h3 className={`display ${styles.title}`}>{project.title}</h3>
-                <span className={styles.meta}>
-                  {[project.tag, project.client, project.year].filter(Boolean).join(' · ')}
-                  <span className={styles.cta}>Ver case study →</span>
-                </span>
-              </Link>
-            </motion.div>
-          </AnimatePresence>
+          {projects.map((p, i) => (
+            <Title key={p.slug} project={p} index={i} pos={pos} mode={mode} />
+          ))}
         </div>
 
         {/* Pontos laterais: hover abre a vista geral */}

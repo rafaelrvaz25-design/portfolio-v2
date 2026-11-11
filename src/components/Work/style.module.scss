@@ -65,9 +65,15 @@
   right: 30%;
   bottom: 40px;
   z-index: 2;
-  pointer-events: none;
+  pointer-events: none; // cada título liga os cliques só quando é o visível
+  display: grid;
+}
 
-  a { pointer-events: auto; }
+// os títulos ficam todos empilhados na mesma célula; a posição do palco decide qual se vê
+.titleItem {
+  grid-area: 1 / 1;
+  align-self: end;
+  will-change: transform, opacity;
 }
 
 .counter {
