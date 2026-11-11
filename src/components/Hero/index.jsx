@@ -4,6 +4,11 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { RevealLines } from '../../common/Reveal';
 import styles from './style.module.scss';
 import LogoMaterial3D from '../LogoMaterial3D';
+import RotatingArea from './RotatingArea';
+
+// Áreas em que o Rafa trabalha, uma por case study. A primeira é a que fica fixa
+// com "reduzir movimento".
+const AREAS = ['Design Systems', 'Acessibilidade', 'Self-checkout', 'Landing pages'];
 
 export default function Hero() {
   const ref = useRef(null);
@@ -22,7 +27,8 @@ export default function Hero() {
           onLoad
           delay={0.15}
           className={`display ${styles.title}`}
-          lines={['UX/UI Designer', 'focado em', 'Design Systems']}
+          label={`UX/UI Designer a trabalhar em ${AREAS.slice(0, -1).join(', ')} e ${AREAS[AREAS.length - 1]}`}
+          lines={['UX/UI Designer', 'a trabalhar em', <RotatingArea key="area" areas={AREAS} />]}
         />
       </motion.div>
 

@@ -8,13 +8,14 @@ const lineVariants = {
 
 // Linhas que sobem de dentro de uma máscara. O título inteiro dispara de uma vez
 // (ao entrar no ecrã, ou logo ao carregar com `onLoad`) e as linhas seguem em cascata.
-export function RevealLines({ lines, as = 'h2', className, style, delay = 0, onLoad = false }) {
+// `lines` aceita texto ou elementos; com elementos, passar `label` (o texto lido pelos leitores de ecrã).
+export function RevealLines({ lines, as = 'h2', className, style, delay = 0, onLoad = false, label }) {
   const Tag = motion[as];
   const trigger = onLoad
     ? { initial: 'hidden', animate: 'show' }
     : { initial: 'hidden', whileInView: 'show', viewport: { once: true, amount: 0.3 } };
   return (
-    <Tag className={className} style={style} aria-label={lines.join(' ')} {...trigger}>
+    <Tag className={className} style={style} aria-label={label || lines.join(' ')} {...trigger}>
       {lines.map((line, i) => (
         <span key={i} aria-hidden="true" style={{ display: 'block', overflow: 'hidden', paddingBottom: '0.06em', marginBottom: '-0.06em' }}>
           <motion.span style={{ display: 'block' }} variants={lineVariants} custom={delay + i * 0.08}>

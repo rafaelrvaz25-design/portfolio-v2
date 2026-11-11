@@ -32,7 +32,55 @@
   margin: 0;
   text-align: center;
   font-size: clamp(32px, 7.4vw, 150px); // a Mattone é larga: 3 linhas sem partir
+  white-space: nowrap;
   color: var(--ink);
+}
+
+// Linha da área: fundo verde de ação, com a largura da palavra atual.
+.areaLine {
+  position: relative;
+  display: inline-block;
+}
+
+.area {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden; // máscara: a palavra entra por baixo e sai por cima
+  height: 1em;
+  line-height: 1;
+  box-sizing: content-box;
+  padding: 0.06em 0.12em 0.04em;
+  background: var(--action);
+  color: var(--on-action);
+}
+
+.areaWord {
+  position: absolute;
+  left: 0.12em;
+  top: 0.06em;
+  white-space: nowrap;
+}
+
+.areaWordStatic {
+  display: inline-block; // antes de medir (e sem JavaScript) a caixa ajusta-se à palavra
+  white-space: nowrap;
+}
+
+.areaSizers {
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+  height: 0;
+  overflow: hidden;
+}
+
+.areaSizer {
+  position: absolute;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .bottom {
@@ -52,7 +100,7 @@
 }
 
 @media (max-width: 700px) {
-  .title { font-size: 10.6vw; }
+  .title { font-size: 7.1vw; } // a linha mais larga ("A trabalhar em" / "Acessibilidade") ocupa ~12.1em
   .logo3d { width: 80vw; height: 50vw; left: 16vw; bottom: 12vh; }
   .titleWrap { padding-top: 14vh; }
   .bottom { font-size: 13px; }
