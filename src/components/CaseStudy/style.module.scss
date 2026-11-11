@@ -33,7 +33,7 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
   font-weight: 300;
   margin-bottom: 60px;
   transition: color 0.3s;
-  &:hover { color: #fff; }
+  &:hover { color: var(--link-dark); }
 }
 .kicker {
   font-size: 13px;
@@ -136,7 +136,7 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #8a8a8a;
+  color: var(--muted); // 4.8:1 (o #8a8a8a dava 3.1:1)
   margin: 0 0 20px;
 }
 .impactText {
@@ -169,7 +169,7 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
   span {
     display: block;
     font-size: 13px;
-    color: #8a8a8a;
+    color: var(--muted); // 4.8:1 (o #8a8a8a dava 3.1:1)
     margin-bottom: 12px;
   }
   h2 {
@@ -190,12 +190,13 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
   p { margin: 0 0 18px; }
   strong { font-weight: 600; color: $ink; }
   a {
-    color: $ink;
-    text-decoration: underline;
-    text-decoration-color: $line;
+    color: var(--link);           // verde escurecido: 4.9:1 no fundo claro
+    font-weight: 400;
+    text-decoration: underline;    // sublinhado sempre: o link não se distingue só pela cor
     text-underline-offset: 3px;
-    transition: text-decoration-color 0.2s;
-    &:hover { text-decoration-color: $ink; }
+    text-decoration-thickness: 1px;
+    &:hover { text-decoration-thickness: 2px; }
+    &:visited { color: var(--link-visited); }
   }
   h3 {
     font-size: 20px;
@@ -211,7 +212,7 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
   blockquote {
     margin: 30px 0;
     padding: 0 0 0 24px;
-    border-left: 2px solid var(--accent);
+    border-left: 2px solid var(--link);
     font-size: 22px;
     line-height: 1.5;
     color: $ink;
@@ -229,7 +230,7 @@ $ease: cubic-bezier(0.76, 0, 0.24, 1);
     font-size: 12px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #8a8a8a;
+    color: var(--muted); // 4.8:1 (o #8a8a8a dava 3.1:1)
     font-weight: 500;
     padding: 0 16px 12px 0;
     border-bottom: 1px solid $line;

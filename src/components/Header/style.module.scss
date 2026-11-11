@@ -127,7 +127,8 @@ $bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   justify-content: center;
   transition: background-color 0.3s;
 
-  &:hover { background: var(--accent); }
+  &:hover { background: var(--action); }
+  &:hover .lines::before, &:hover .lines::after { background: var(--on-action); } // traços escuros sobre o verde
 }
 
 .lines {

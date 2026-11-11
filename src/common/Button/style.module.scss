@@ -27,17 +27,17 @@
   height: 150%;
   border-radius: 50%;
   transform: translateX(-50%);
-  background: var(--accent);
+  background: var(--action);
 }
 
 .light {
   color: var(--ink);
-  &:hover .label { color: #fff; }
+  &:hover .label, &:focus-visible .label { color: var(--on-action); }
 }
 
 .dark {
   color: #fff;
-  &:hover .label { color: #fff; }
+  &:hover .label, &:focus-visible .label { color: var(--on-action); } // texto escuro sobre o verde
 }
 
 @media (max-width: 700px) {

@@ -86,14 +86,15 @@
 .titleLink {
   text-decoration: none;
   display: inline-block;
+  &:visited .cta { color: var(--link-visited-dark); } // case study já visto
 
-  &:hover .cta { color: var(--paper); }
   &:hover .cta::after { transform: scaleX(1); transform-origin: left; }
 }
 
 .title {
   margin: 0;
   font-size: clamp(30px, 4.2vw, 80px);
+  color: var(--paper);
 }
 
 .meta {
@@ -107,7 +108,7 @@
 
 .cta {
   position: relative;
-  color: var(--paper);
+  color: var(--link-dark); // verde: 10.8:1 no fundo escuro
   transition: color 0.3s;
   &::after {
     content: "";
@@ -143,7 +144,7 @@
   gap: 18px;
   padding: 6px 0;
 
-  &:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+  &:focus-visible { outline: 2px solid var(--action); outline-offset: 4px; }
 }
 
 .railLabel {

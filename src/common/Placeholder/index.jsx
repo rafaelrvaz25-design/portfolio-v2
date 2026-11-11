@@ -1,7 +1,7 @@
 // Espaço reservado para imagens que ainda não chegaram.
 // Trocar por <img> quando o Rafa enviar as fotos e os ecrãs dos projetos.
 export default function Placeholder({ label, color = "#d9d9d6", tone = "dark", style, className }) {
-  const textColor = tone === "light" ? "rgba(255,255,255,0.75)" : "rgba(20,20,20,0.55)";
+  const textColor = tone === "light" ? "rgba(255,255,255,0.75)" : "rgba(20,20,20,0.72)";
   return (
     <div
       className={className}

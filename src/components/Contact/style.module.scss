@@ -50,8 +50,8 @@
   font-size: 15px;
 
   > div { display: flex; flex-direction: column; gap: 8px; }
-  a { text-decoration: none; border-bottom: 1px solid var(--dark-line); align-self: flex-start; }
-  a:hover { border-color: var(--paper); }
+  a { color: var(--link-dark); text-decoration: none; border-bottom: 1px solid currentColor; align-self: flex-start; }
+  a:visited { color: var(--link-visited-dark); }
 }
 
 .copy {

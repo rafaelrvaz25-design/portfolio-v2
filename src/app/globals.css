@@ -9,12 +9,18 @@
   --paper: #f4f4f4;
   --ink: #141414;
   --ink-soft: #404040;
-  --muted: #737373;
+  --muted: #6b6b6b;           /* 4.8:1 em #f4f4f4 (o #737373 dava 4.3:1, abaixo do mínimo) */
   --line: #dadada;
   --dark: #1c1c1c;
   --dark-line: rgba(255, 255, 255, 0.16);
   --dark-muted: rgba(255, 255, 255, 0.55);
-  --accent: #3366ff;
+  /* Cor de ação (contrastes WCAG 2.2 medidos; mínimo 4.5:1 para texto, 3:1 para contornos) */
+  --action: #0FEB89;          /* preenchimento dos botões no hover; links em fundo escuro (10.8:1 em #1c1c1c) */
+  --on-action: #141414;       /* texto sobre a cor de ação (11.6:1); branco daria só 1.6:1 */
+  --link: #007A47;            /* links em fundo claro: o mesmo verde, escurecido (4.9:1 em #f4f4f4) */
+  --link-visited: #DA0033;    /* link visitado em fundo claro (4.7:1) */
+  --link-dark: var(--action);         /* links em fundo escuro */
+  --link-visited-dark: #FF4A6E;       /* visitado em fundo escuro: #DA0033 aclarado (5.2:1; o original dá só 3.3:1) */
 
   /* Tipografia */
   --font-display: 'Mattone', 'Arial Black', sans-serif;
@@ -43,12 +49,13 @@ html, body {
 a { color: inherit; }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  /* anel escuro + halo verde: visível tanto em fundo claro (17:1) como em fundo escuro (10.8:1) */
+  outline: 2px solid var(--ink);
   outline-offset: 3px;
-  box-shadow: 0 0 0 5px #fff;
+  box-shadow: 0 0 0 5px var(--action);
 }
 
-::selection { background: var(--accent); color: #fff; }
+::selection { background: var(--action); color: var(--on-action); }
 
 .display {
   font-family: var(--font-display);
