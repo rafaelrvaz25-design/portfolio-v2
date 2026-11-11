@@ -4,6 +4,11 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { RevealLines } from '../../common/Reveal';
 import styles from './style.module.scss';
 import LogoMaterial3D from '../LogoMaterial3D';
+import RotatingArea from './RotatingArea';
+
+// Áreas em que o Rafa trabalha, uma por case study. A primeira (Design Systems) é a de
+// repouso: o hero abre e acaba nela.
+const AREAS = ['Design Systems', 'Acessibilidade', 'Self-checkout', 'Landing pages'];
 
 export default function Hero() {
   const ref = useRef(null);
@@ -17,24 +22,14 @@ export default function Hero() {
       {/* o novo Rv. em prata; em computadores lentos passa a imagem estática */}
       <LogoMaterial3D variant="prata" className={styles.logo3d} />
       <motion.div style={{ y, opacity }} className={styles.titleWrap}>
-        <div className={styles.heading}>
-          <RevealLines
-            as="h1"
-            onLoad
-            delay={0.15}
-            className={`display ${styles.title}`}
-            lines={['UX/UI Designer']}
-          />
-          {/* proposta de valor: abrangente, sem depender de uma especialização */}
-          <motion.p
-            className={styles.statement}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5, ease: [0.33, 1, 0.68, 1] }}
-          >
-            Desenho experiências digitais claras, consistentes e preparadas para evoluir.
-          </motion.p>
-        </div>
+        <RevealLines
+          as="h1"
+          onLoad
+          delay={0.15}
+          className={`display ${styles.title}`}
+          label={`UX/UI Designer a trabalhar em ${AREAS.slice(0, -1).join(', ')} e ${AREAS[AREAS.length - 1]}`}
+          lines={['UX/UI Designer', 'a trabalhar em', <RotatingArea key="area" areas={AREAS} />]}
+        />
       </motion.div>
 
       <motion.div
@@ -46,7 +41,7 @@ export default function Hero() {
         <p>
           Três anos a desenhar produtos digitais
           <br />
-          para desporto, retalho, recrutamento e marcas.
+          para desporto, e-commerce e retalho.
         </p>
         <p className={styles.scroll}>(Scroll)</p>
       </motion.div>

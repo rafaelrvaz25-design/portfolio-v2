@@ -2,8 +2,6 @@
 
 ## Gallo: uma nova identidade, uma nova experiência digital
 
-Landing page para o relançamento da marca Gallo nos mercados brasileiro e português. Fui responsável pelo design de ponta a ponta, das fundações no Figma ao handoff. As versões dos dois mercados foram aprovadas pelo cliente, e a brasileira está publicada.
-
 ### Ficha rápida
 - **Papel:** UX/UI Designer
 - **Cliente:** Gallo

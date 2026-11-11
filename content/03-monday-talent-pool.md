@@ -2,8 +2,6 @@
 
 ## Tornar mais clara e acessível a página do candidato da Talent Pool da Monday
 
-Revisão da página que os candidatos da Talent Pool abrem a partir de um email. Fiz a análise, o design em desktop e mobile, uma auditoria de acessibilidade e o handoff. O design foi entregue à equipa técnica para implementação.
-
 ### Ficha rápida
 - **Papel:** UX/UI Designer
 - **Cliente:** Monday

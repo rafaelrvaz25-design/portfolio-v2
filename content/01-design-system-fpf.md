@@ -2,8 +2,6 @@
 
 ## Um Design System para unificar o ecossistema digital da FPF
 
-Design System para os produtos digitais da Federação Portuguesa de Futebol. Desenhei os componentes, organizei os Design Tokens e mantive a biblioteca durante mais um ano. Dois dos quatro produtos prioritários adotaram o sistema por completo.
-
 ### Ficha rápida
 - **Papel:** UX/UI Designer
 - **Cliente:** Federação Portuguesa de Futebol

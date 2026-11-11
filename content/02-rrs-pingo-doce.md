@@ -2,8 +2,6 @@
 
 ## Simplificar a correção de artigos no self-checkout do Pingo Doce
 
-Uma funcionalidade para os supervisores adicionarem e removerem artigos nos quiosques de self-checkout RRS da Comida Fresca. Desenhei-a em duas semanas, como único designer, com dois developers da Fujitsu. A proposta foi aprovada pela Fujitsu e pelo Pingo Doce.
-
 ### Ficha rápida
 - **Papel:** UX/UI Designer
 - **Cliente:** Pingo Doce
