@@ -57,7 +57,7 @@ collections:
       - label: Título do projeto
         name: titulo
         widget: string
-        hint: Nome curto, usado nos cartões da homepage e no «Próximo projeto». Ex.: Gallo
+        hint: "Nome curto, usado nos cartões da homepage e no «Próximo projeto». Ex.: Gallo"
       - label: Endereço (slug)
         name: slug
         widget: string
@@ -72,7 +72,7 @@ collections:
       - label: Categoria
         name: categoria
         widget: string
-        hint: Aparece nos cartões e no topo do case study. Ex.: Landing page
+        hint: "Aparece nos cartões e no topo do case study. Ex.: Landing page"
       - label: Título da página
         name: titulo_pagina
         widget: string
