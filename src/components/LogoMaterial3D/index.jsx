@@ -177,8 +177,9 @@ export default function LogoMaterial3D({ variant = 'prata', forceStatic = false,
       addEventListener('pointermove', onPointer, { passive: true });
 
       let visible = true;
+      // observa o hero (que não se mexe), não o logo: o logo desloca-se com o parallax
       const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; });
-      io.observe(wrap.current);
+      io.observe(wrap.current.parentElement);
 
       // sonda de desempenho: nos primeiros 2 s, abaixo de 35 fps passa à imagem estática
       const probe = { frames: [], last: 0, start: performance.now(), done: noProbe };
@@ -188,7 +189,11 @@ export default function LogoMaterial3D({ variant = 'prata', forceStatic = false,
       let raf;
       const tick = (now) => {
         raf = requestAnimationFrame(tick);
-        if (!visible) { probe.last = 0; return; }
+        // parallax: atualizado sempre (é barato), para nunca ficar preso a meio depois de um scroll brusco
+        const rect = wrap.current.parentElement.getBoundingClientRect();
+        const progress = Math.min(1, Math.max(0, -rect.top / (rect.height || 1)));
+        wrap.current.style.transform = `translate3d(0, ${-progress * 40}vh, 0)`;
+        if (!visible) { probe.last = 0; return; } // fora do ecrã: não desenha o 3D
         if (!probe.done) {
           // mede durante 1,5 s depois de meio segundo de aquecimento (por tempo, para não demorar em máquinas lentas)
           const el = now - probe.start;
@@ -207,9 +212,6 @@ export default function LogoMaterial3D({ variant = 'prata', forceStatic = false,
         rot.y += (pointer.x * 0.55 - rot.y) * 0.05;
         pivot.rotation.set(V.rot[0] + rot.x + Math.sin(t * 0.7) * 0.05, V.rot[1] + rot.y + Math.sin(t * 0.45) * 0.14, Math.sin(t * 0.6) * 0.03);
         pivot.position.y = Math.sin(t * 1.1) * 8;
-        const rect = wrap.current.parentElement.getBoundingClientRect();
-        const progress = Math.min(1, Math.max(0, -rect.top / (rect.height || 1)));
-        wrap.current.style.transform = `translate3d(0, ${-progress * 40}vh, 0)`;
         renderer.render(scene, camera);
         if (capture) { wrap.current.dataset.ready = '1'; wrap.current.dataset.tris = renderer.info.render.triangles; }
       };
@@ -217,6 +219,7 @@ export default function LogoMaterial3D({ variant = 'prata', forceStatic = false,
 
       cleanup = () => {
         cancelAnimationFrame(raf);
+        if (wrap.current) wrap.current.style.transform = ''; // a imagem estática fica no sítio certo
         removeEventListener('pointermove', onPointer);
         ro.disconnect(); io.disconnect();
         scene.traverse((o) => { if (o.geometry) o.geometry.dispose(); });
