@@ -1,6 +1,7 @@
 // Fonte única dos projetos. O texto de cada case study vive em /content/*.md.
-// As imagens ainda são espaços reservados: cada entrada de `images` diz depois
-// de que secção (pelo título da secção) aparece.
+// `cover` é a capa 16:9 do projeto (cartões da home e topo do case study), feita no Figma
+// do portfólio, página "Portfolio / Project Thumbnails". `color` é o fundo dessa capa,
+// mostrado enquanto a imagem carrega. Ao trocar uma capa, subir o `?v=N`.
 
 export const projects = [
   {
@@ -10,7 +11,8 @@ export const projects = [
     tag: "Design System",
     client: "Federação Portuguesa de Futebol",
     year: "2023 a 2024",
-    color: "#e4e4e4",
+    color: "#112723",
+    cover: "images/fpf/00-capa.webp?v=1",
     images: {}, // as figuras do FPF vivem no próprio texto (content/01-design-system-fpf.md)
   },
   {
@@ -20,7 +22,8 @@ export const projects = [
     tag: "Self-checkout",
     client: "Fujitsu, para o Pingo Doce",
     year: null, // por confirmar com o Rafa
-    color: "#dddddd",
+    color: "#e4ecd6",
+    cover: "images/rrs/00-capa.webp?v=1",
     images: {}, // as figuras vivem no próprio texto (content/02-rrs-pingo-doce.md)
   },
   {
@@ -30,7 +33,8 @@ export const projects = [
     tag: "UX/UI e acessibilidade",
     client: "Monday, projeto interno",
     year: "2026",
-    color: "#e2e2e2",
+    color: "#3f7a3a",
+    cover: "images/monday/00-capa.webp?v=1",
     images: {}, // as figuras vivem no próprio texto (content/03-monday-talent-pool.md)
   },
   {
@@ -40,8 +44,8 @@ export const projects = [
     tag: "Landing page",
     client: "Gallo",
     year: "2026",
-    color: "#f8f2d8",
-    cover: "images/gallo/00-capa.webp?v=1", // capa do case study (composição com as versões finais do Figma)
+    color: "#e2c879",
+    cover: "images/gallo/00-capa.webp?v=2",
     images: {}, // as figuras vivem no próprio texto (content/04-gallo.md)
   },
 ];

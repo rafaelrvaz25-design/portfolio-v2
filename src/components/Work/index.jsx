@@ -10,6 +10,24 @@ import { FadeUp } from '../../common/Reveal';
 import { scrollToY } from '../SmoothScroll';
 import styles from './style.module.scss';
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+// Capa do projeto, ou o espaço reservado se ainda não houver. O título vem logo a seguir
+// no mesmo link, por isso a imagem é decorativa (alt vazio).
+function Cover({ project, lazy }) {
+  if (!project.cover) return <Placeholder label={`Capa · ${project.title}`} color="transparent" />;
+  return (
+    <img
+      className={styles.cover}
+      src={`${BASE}/${project.cover.replace(/^\//, '')}`}
+      alt=""
+      loading={lazy ? 'lazy' : undefined}
+      decoding="async"
+      draggable={false}
+    />
+  );
+}
+
 const n = projects.length;
 const pad = (i) => String(i + 1).padStart(2, '0');
 const lerp = (a, b, t) => a + (b - a) * t;
@@ -55,7 +73,7 @@ function Card({ project, index, pos, mode, tilt, vh, hover }) {
       <motion.div style={{ y, scale, rotateX, opacity }} className={styles.card}>
         <Link href={`/projetos/${project.slug}`} className={styles.cardLink} tabIndex={-1} aria-hidden="true">
           <div className={styles.frame} style={{ backgroundColor: project.color }}>
-            <Placeholder label={`Capa · ${project.title}`} color="transparent" />
+            <Cover project={project} />
           </div>
         </Link>
       </motion.div>
@@ -262,7 +280,7 @@ function List() {
         <FadeUp key={p.slug}>
           <Link href={`/projetos/${p.slug}`} className={styles.listItem}>
             <div className={styles.frame} style={{ backgroundColor: p.color }}>
-              <Placeholder label={`Capa · ${p.title}`} color="transparent" />
+              <Cover project={p} lazy />
             </div>
             <p className={styles.counter}>{pad(i)} / {pad(n - 1)}</p>
             <h3 className={`display ${styles.title}`}>{p.title}</h3>
