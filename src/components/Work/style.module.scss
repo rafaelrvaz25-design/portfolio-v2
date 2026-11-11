@@ -86,7 +86,6 @@
 .titleLink {
   text-decoration: none;
   display: inline-block;
-  &:visited .cta { color: var(--link-visited-dark); } // case study já visto
 
   &:hover .cta::after { transform: scaleX(1); transform-origin: left; }
 }
